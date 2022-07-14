@@ -127,8 +127,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\Week_1_old\Section1\Section1\Ex1.cpp" />
-    <ClCompile Include="..\..\..\..\Week_1_old\Section1\Section1\Log.cpp" />
+    <ClCompile Include="Log.cpp" />
+    <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
