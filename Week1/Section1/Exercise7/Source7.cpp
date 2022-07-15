@@ -30,11 +30,11 @@ int main() {
 	cout << "\n";
 
 	//process
-	int res1 = a + 1 * b + 2 - c;
-	int res2 = (a + 1) * (b + 2) - c;
+	int result1 = a + 1 * b + 2 - c;
+	int result2 = (a + 1) * (b + 2) - c;
 
-	cout << " a + 1 * b + 2 - c = " << res1 << endl;
-	cout << " (a + 1) * (b + 2) - c = " << res2 << endl;
+	cout << " a + 1 * b + 2 - c = " << result1 << endl;
+	cout << " (a + 1) * (b + 2) - c = " << result2 << endl;
 
 
 }

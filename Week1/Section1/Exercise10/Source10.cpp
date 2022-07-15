@@ -18,7 +18,7 @@ using namespace std;
 
 int main() {
 
-	int num1, num2, aux;
+	int num1, num2;
 
 	cout << "Please enter two numbers:" << endl;
 	cout << ">>";
@@ -27,7 +27,7 @@ int main() {
 	cin >> num2;
 
 	//uses an auxiliar variable to store the value of num1
-	aux = num1;
+	int aux = num1;
 	num1 = num2; //overrides num1
 	num2 = aux;
 

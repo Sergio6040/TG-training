@@ -10,7 +10,6 @@ using namespace std;
 
 int main() {
 
-	int max = 128;
 	cout << "Sometimes overflow and underflow can happen if we're not careful with our data sizes and values!\n" << endl;
 
 	cout << "Overflow can happen when we evaluate " << INT_MAX << " + 1.\n The resulting value will be : " << INT_MAX + 1 << endl;
