@@ -27,9 +27,9 @@ int main() {
 
 	std::cin >> guess;
 
-	srand(time(0));
+	srand(time(0));//sets a random seed for the rand() function
 
-	int result = 1 + (rand() % 2);
+	int result = 1 + (rand() % 2);//gets a random number between 1 or 2
 
 	std::cout << "\nYour guess: " << guess << std::endl;
 	std::cout << "Actual result: " << result << std::endl;
