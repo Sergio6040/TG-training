@@ -25,7 +25,7 @@ You got 2/3 correct answers! Your final grade is: 3.33
 
 int main() {
 	bool answers[3];
-	float grade = 0;
+	float grade = 0.0f;
 	float maxGrade = 3;
 
 	std::cout << "Welcome to your quiz!\n0 - False\n1 - True\n" << std::endl;
@@ -42,7 +42,7 @@ int main() {
 		std::cout << "nope, do the math again" << std::endl;
 	}
 
-	std::cout << "1) Does the dogs barks ?" << std::endl;
+	std::cout << "2) Does the dogs barks ?" << std::endl;
 	std::cin >> answers[1];//true
 
 	if (answers[1]) {
@@ -54,7 +54,7 @@ int main() {
 		std::cout << "please, touch some grass!" << std::endl;
 	}
 
-	std::cout << "1) She loves you ?" << std::endl;
+	std::cout << "3) Does she loves you ?" << std::endl;
 	std::cin >> answers[2]; //false :c
 
 	if (!answers[2]) {

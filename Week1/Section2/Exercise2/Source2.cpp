@@ -15,7 +15,7 @@ Number c is ODD!
 
 #include <iostream>
 
-void evaluate(int value) {
+void printEvenOrOdd(int value) {
 	if ((value % 2) == 0) {
 		std::cout << "Number " << value << " is EVEN!" << std::endl;
 	}
@@ -34,9 +34,9 @@ int main() {
 	std::cout << "Please enter a value for number c: ";
 	std::cin >> c;
 
-	evaluate(a);
-	evaluate(b);
-	evaluate(c);
+	printEvenOrOdd(a);
+	printEvenOrOdd(b);
+	printEvenOrOdd(c);
 
 }
 

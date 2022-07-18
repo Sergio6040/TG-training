@@ -15,13 +15,16 @@ int main() {
 	std::cout << "Please enter a number: ";
 	std::cin >> value;
 
-	if (value == 0) {
+	if (value == 0) 
+	{
 		std::cout << "Your number is Zero" << std::endl;
 	}
-	else if (value > 0) {
+	else if (value > 0)
+	{
 		std::cout << "Your number is Positive" << std::endl;
 	}
-	else if (value < 0) {
+	else
+	{
 		std::cout << "Your number is Negative" << std::endl;
 	}
 }

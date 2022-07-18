@@ -14,7 +14,7 @@ int main() {
 	std::cout << "Hello! Please enter an alphabetical character: ";
 	std::cin >> letter;
 
-	if (islower(letter) && (letter == 'a' || letter == 'e' || letter == 'i' || letter == 'o' || letter == 'u')) {
+	if (letter == 'a' || letter == 'e' || letter == 'i' || letter == 'o' || letter == 'u') {
 		std::cout << "Your character is a lowercase vowel! :)" << std::endl;
 	}else{
 		std::cout << "Your character is not a lowercase vowel! :(" << std::endl;

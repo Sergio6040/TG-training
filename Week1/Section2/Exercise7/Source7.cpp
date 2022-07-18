@@ -19,11 +19,11 @@ You win… big deal!
 
 #include <iostream>
 
-enum options {
+enum option {
 	rock = 1, paper, scissors
 };
 
-std::string toText(int a) {
+std::string toText(option a) {
 	std::string value;
 	switch (a) {
 		case rock:
@@ -53,8 +53,8 @@ int main() {
 		srand(time(0));
 
 		int pcChoise = 1 + (rand() % 3);
-		std::cout << "Your choise: " << toText(userChoise) << std::endl;
-		std::cout << "Computer's choise: " << toText(pcChoise) << std::endl;
+		std::cout << "Your choise: " << toText((option)userChoise) << std::endl;
+		std::cout << "Computer's choise: " << toText((option)pcChoise) << std::endl;
 
 		if (userChoise == pcChoise) {
 			std::cout << "\nDraw\n" << std::endl;
