@@ -1,32 +1,33 @@
 /*
-* Exercise 7 - Lottery
-* Write a program that will simulate the lottery. Create two arrays of 5 integers. 
-* The first array should be populated with 5 random numbers from 1-20. For the second array, ask the user to input 5 numbers from 1-20.
-* Make sure to handle invalid input and make sure numbers are not repeated.
-* For each number that is matched in the same index, give the user $10.
-*/
+ * Exercise 7 - Lottery
+ * Write a program that will simulate the Lottery. Create two arrays of 5 integers.
+ * The first array should be populated with 5 random numbers from 1-20. For the second array, ask the user to input 5 numbers from 1-20.
+ * Make sure to handle invalid input and make sure numbers are not repeated.
+ * For each number that is matched in the same index, give the user $10.
+ */
 
 #include <iostream>
 
 int main()
 {
-	int lottery[5];
-	int userGuess[5];
+	int Lottery[5];
+	int UserGuess[5];
 
-	std::cout << "-----> Welcome to the Teravision Lottery <-----\n" << "   	may the luck be with you!" << std::endl;
+	std::cout << "-----> Welcome to the Teravision Lottery <-----\n"
+			  << "   	may the luck be with you!" << std::endl;
 
 	/* initialize random seed: */
 	srand(time(NULL));
 
-	for (int i = 0; i < sizeof(lottery) / sizeof(int); i++)
+	for (int i = 0; i < sizeof(Lottery) / sizeof(int); i++)
 	{
-		//populate the lottery array
-		int randomNumber = 1 + rand() % 20;
+		// populate the Lottery array
+		int RandomNumber = 1 + rand() % 20;
 		bool isRandomRepeated = false;
 
-		for (int x : lottery)
+		for (int x : Lottery)
 		{
-			if (x == randomNumber)
+			if (x == RandomNumber)
 			{
 				isRandomRepeated = true;
 				i--;
@@ -35,33 +36,33 @@ int main()
 
 		if (!isRandomRepeated)
 		{
-			lottery[i] = randomNumber;
+			Lottery[i] = RandomNumber;
 		}
 	}
 
 	int index = 0;
-	while (index < (sizeof(lottery) / sizeof(int)) )
+	while (index < (sizeof(Lottery) / sizeof(int)))
 	{
-		int userInput;
+		int UserInput;
 		bool isRepeated = false;
 		std::cout << "Enter your guess between [1, 20]: ";
-		std::cin >> userInput;
+		std::cin >> UserInput;
 
-		//checks if the number is repeated
-		for (int x : userGuess)
+		// checks if the number is repeated
+		for (int x : UserGuess)
 		{
-			if (x == userInput)
+			if (x == UserInput)
 			{
 				isRepeated = true;
 				std::cout << "Do not repeat numbers!" << std::endl;
 			}
 		}
 
-		//checks the rage of numbers and stores the value
-		if ((userInput >= 1 && userInput <= 20) && !isRepeated) 
+		// checks the rage of numbers and stores the value
+		if ((UserInput >= 1 && UserInput <= 20) && !isRepeated)
 		{
-			
-			userGuess[index] = userInput;
+
+			UserGuess[index] = UserInput;
 			index++;
 		}
 		else
@@ -72,18 +73,17 @@ int main()
 		}
 	}
 
-	int jackpot = 0;
+	int Jackpot = 0;
 	std::cout << "\nLottery Result: ";
-	
-	for (int i = 0; i < (sizeof(lottery) / sizeof(int)) ; i++)
+
+	for (int i = 0; i < (sizeof(Lottery) / sizeof(int)); i++)
 	{
-		if (lottery[i] == userGuess[i])
+		if (Lottery[i] == UserGuess[i])
 		{
-			jackpot += 10;
+			Jackpot += 10;
 		}
-		std::cout << lottery[i] << " ";
+		std::cout << Lottery[i] << " ";
 	}
 
-	std::cout << "\nYour prize: " << jackpot << " $" << std::endl;
-
+	std::cout << "\nYour prize: " << Jackpot << " $" << std::endl;
 }

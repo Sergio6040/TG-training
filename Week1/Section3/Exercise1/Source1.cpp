@@ -19,7 +19,8 @@ int main()
 		LoopCounter++;
 	}
 
-	if (LoopCounter < 3) {
+	if (LoopCounter < 3) 
+	{
 		std::cout << "Great, correct number!" << std::endl;
 	}
 	else

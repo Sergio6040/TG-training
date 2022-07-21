@@ -8,12 +8,9 @@
 
 int main()
 {
-	int totalSum = 0;
 	std::cout << "multiples of 10:" << std::endl;
 	for (int i = 1; i <= 10; i++)
 	{
 		std::cout << i * 10 << ", ";
 	}
-	std::cout << std::endl;
-
 }

@@ -1,43 +1,46 @@
 /*
-* Exercise 2 - More Input Validation
-* Rewrite the true or false quiz you did in the previous section. 
-* This time, instead of asking for 1 or 2 as inputs, ask them to answer T or F. 
-* If they enter invalid input, give them a couple of tries before you automatically fail them.
-*/
+ * Exercise 2 - More Input Validation
+ * Rewrite the true or false quiz you did in the previous section.
+ * This time, instead of asking for 1 or 2 as inputs, ask them to answer T or F.
+ * If they enter invalid input, give them a couple of tries before you automatically fail them.
+ */
 
 #include <iostream>
 
-bool makeQuestion(std::string question, bool correctAnswer) 
+bool makeQuestion(std::string Question, bool CorrectAnswer)
 {
-	bool userAnswer = !correctAnswer;
-	int attepts = 0;
-	while (userAnswer != correctAnswer && attepts < 3)
+	bool UserAnswer = !CorrectAnswer;
+	int Attepts = 0;
+	while (UserAnswer != CorrectAnswer && Attepts < 3)
 	{
-		attepts++;
+		Attepts++;
 
-		if (attepts > 1) std::cout << "Wrong answer!" << std::endl;
-		if (attepts == 3) std::cout << "Last attempt!" << std::endl;
+		if (Attepts > 1)
+			std::cout << "Wrong answer!" << std::endl;
+		if (Attepts == 3)
+			std::cout << "Last attempt!" << std::endl;
 
-		std::string userInput;
-		std::cout << question;
-		std::cin >> userInput;
+		std::string UserInput;
+		std::cout << Question;
+		std::cin >> UserInput;
 
-		if (userInput == "t" || userInput == "T")
+		if (UserInput == "t" || UserInput == "T")
 		{
-			userAnswer = true;
+			UserAnswer = true;
 		}
-		else if (userInput == "f" || userInput == "F")
+		else if (UserInput == "f" || UserInput == "F")
 		{
-			userAnswer = false;
+			UserAnswer = false;
 		}
-		else {
+		else
+		{
 			std::cout << "Do not mess with me. Please answer T or F." << std::endl;
-
 		}
 	}
 
-	if (attepts >= 3 && userAnswer != correctAnswer) {
-		//reprueba
+	if (Attepts >= 3 && UserAnswer != CorrectAnswer)
+	{
+		// reprueba
 		std::cout << "Number of attempts exceeded!" << std::endl;
 		return false;
 	}
@@ -48,44 +51,41 @@ bool makeQuestion(std::string question, bool correctAnswer)
 	}
 }
 
-int main() 
+int main()
 {
-	int userCorrectAnswers = 0;
-	float maxCorrectAnswers = 3;
+	int UserCorrectAnswers = 0;
+	float MaxCorrectAnswers = 3;
 
-	//stores the questions and the correct answers
-	std::string questions[3] = {
+	// stores the Questions and the correct Answers
+	std::string Questions[3] = {
 		"Is the ocean a soup? ",
 		"Is the forest a salad? ",
-		"Is a hot dog a taco though? "
-	};
+		"Is a hot dog a taco though? "};
 
-	bool answers[3] = {
+	bool Answers[3] = {
 		true,
 		false,
-		false
-	};
+		false};
 
-	std::cout << "Welcome to your quiz!\nAnswer\nF for False\nT for True\nYou only have 3 attempts per cuestion.\n" << std::endl;
+	std::cout << "Welcome to your quiz!\nAnswer\nF for False\nT for True\nYou only have 3 attempts per cuestion.\n"
+			  << std::endl;
 
-
-	//loop the questions
+	// loop the Questions
 	for (int i = 0; i < 3; i++)
 	{
-		bool result = makeQuestion(questions[i], answers[i]);
+		bool result = makeQuestion(Questions[i], Answers[i]);
 
 		if (result)
 		{
-			userCorrectAnswers++;
+			UserCorrectAnswers++;
 		}
 		else
 		{
-			userCorrectAnswers = 0;
+			UserCorrectAnswers = 0;
 			break;
 		}
-		
 	}
 
-	float totalGrade  = (5 * userCorrectAnswers) / maxCorrectAnswers;
-	std::cout << "\nYou got " << userCorrectAnswers << "/3 correct answers!Your final grade is : " << totalGrade << std::endl;
+	float TotalGrade = (5 * UserCorrectAnswers) / MaxCorrectAnswers;
+	std::cout << "\nYou got " << UserCorrectAnswers << "/3 correct Answers!Your final grade is : " << TotalGrade << std::endl;
 }
