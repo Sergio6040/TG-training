@@ -25,6 +25,6 @@ int main()
 	}
 	else
 	{
-		std::cout << "Finally! Was that hard?? maybe this is too advance fot you." << std::endl;
+		std::cout << "Finally! Was that hard?? maybe this is too advance for you." << std::endl;
 	}
 }

@@ -37,12 +37,6 @@ int main()
 		}
 	}
 
-	//trampa----------------------------------------------------------------------------------------------------
-	for (int a : Lottery)
-	{
-		std::cout << a << " ";
-	}
-
 	int index = 0;
 	while (index < (sizeof(Lottery) / sizeof(int)))
 	{
