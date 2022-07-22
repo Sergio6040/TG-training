@@ -7,7 +7,6 @@
  */
 
 #include <iostream>
-#include <conio.h>
 
 int main()
 {
@@ -25,10 +24,13 @@ int main()
 		}
 
 		std::cout << "Please enter a number: ";
-		if (std::cin.peek() == '\n') break;
+		if (std::cin.peek() == '\n')
+		{
+			break;
+		}
 		std::cin >> MyArray[EnteredNumbers];
 
-		if (std::cin.fail() || std::cin.bad())
+		if (std::cin.fail())
 		{
 			std::cin.clear();
 			std::cout << "Wrong input! please enter a number or press ENTER to finish.\n";

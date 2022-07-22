@@ -7,18 +7,23 @@
 
 #include <iostream>
 
-bool makeQuestion(std::string Question, bool CorrectAnswer)
+bool MakeQuestion(std::string Question, bool CorrectAnswer)
 {
-	bool UserAnswer = !CorrectAnswer;
-	int Attepts = 0;
-	while (UserAnswer != CorrectAnswer && Attepts < 3)
+	bool bUserAnswer;
+	int Attempts = 0;
+	
+	do
 	{
-		Attepts++;
+		Attempts++;
 
-		if (Attepts > 1)
+		if (Attempts > 1)
+		{
 			std::cout << "Wrong answer!" << std::endl;
-		if (Attepts == 3)
+		}
+		if (Attempts == 3)
+		{
 			std::cout << "Last attempt!" << std::endl;
+		}
 
 		std::string UserInput;
 		std::cout << Question;
@@ -26,21 +31,22 @@ bool makeQuestion(std::string Question, bool CorrectAnswer)
 
 		if (UserInput == "t" || UserInput == "T")
 		{
-			UserAnswer = true;
+			bUserAnswer = true;
 		}
 		else if (UserInput == "f" || UserInput == "F")
 		{
-			UserAnswer = false;
+			bUserAnswer = false;
 		}
 		else
 		{
 			std::cout << "Do not mess with me. Please answer T or F." << std::endl;
 		}
-	}
+	} 
+	while (bUserAnswer != CorrectAnswer && Attempts < 3);
 
-	if (Attepts >= 3 && UserAnswer != CorrectAnswer)
+	if (Attempts >= 3 && bUserAnswer != CorrectAnswer)
 	{
-		// reprueba
+		// fail the test
 		std::cout << "Number of attempts exceeded!" << std::endl;
 		return false;
 	}
@@ -53,39 +59,45 @@ bool makeQuestion(std::string Question, bool CorrectAnswer)
 
 int main()
 {
-	int UserCorrectAnswers = 0;
-	float MaxCorrectAnswers = 3;
-
 	// stores the Questions and the correct Answers
 	std::string Questions[3] = {
 		"Is the ocean a soup? ",
 		"Is the forest a salad? ",
-		"Is a hot dog a taco though? "};
+		"Is a hot dog a taco though? "
+	};
 
 	bool Answers[3] = {
 		true,
 		false,
-		false};
+		false
+	};
 
-	std::cout << "Welcome to your quiz!\nAnswer\nF for False\nT for True\nYou only have 3 attempts per cuestion.\n"
-			  << std::endl;
+	std::cout << "Welcome to your quiz!\nAnswer\nF for False\nT for True\nYou only have 3 attempts per cuestion.\n" << std::endl;
 
+	bool bQuizAproved;
 	// loop the Questions
 	for (int i = 0; i < 3; i++)
 	{
-		bool result = makeQuestion(Questions[i], Answers[i]);
+		bool Result = MakeQuestion(Questions[i], Answers[i]);
 
-		if (result)
+		if (!Result)
 		{
-			UserCorrectAnswers++;
+			bQuizAproved = false;
+			break;
 		}
 		else
 		{
-			UserCorrectAnswers = 0;
-			break;
+			bQuizAproved = true;
 		}
 	}
 
-	float TotalGrade = (5 * UserCorrectAnswers) / MaxCorrectAnswers;
-	std::cout << "\nYou got " << UserCorrectAnswers << "/3 correct Answers!Your final grade is : " << TotalGrade << std::endl;
+	if (bQuizAproved)
+	{
+		std::cout << "Nice you pass the quiz!" << std::endl;
+	}
+	else
+	{
+		std::cout << "You fail the test" << std::endl;
+	}
+
 }

@@ -24,7 +24,7 @@ int main()
 		std::cout << "Please enter a number: ";
 		std::cin >> MyArray[EnteredNumbers];
 
-		if (std::cin.fail() || std::cin.bad()) 
+		if (std::cin.fail()) 
 		{
 			std::cin.clear();
 			std::cin.ignore(100, '\n');
@@ -38,10 +38,10 @@ int main()
 
 	int Sum = 0;
 	std::cout << "numbers entered: [";
-	for (int x : MyArray)
+	for (int i : MyArray)
 	{
-		std::cout  << x << " ";
-		Sum += x;
+		std::cout  << i << " ";
+		Sum += i;
 	}
 
 	std::cout << "]" << std::endl;

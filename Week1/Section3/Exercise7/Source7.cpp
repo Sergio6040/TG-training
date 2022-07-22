@@ -8,6 +8,28 @@
 
 #include <iostream>
 
+bool IsNumberRepeated(int ArrayToCheck[5], int Number)
+{
+	for (int i = 0 ; i < 5 ; i++)
+	{
+		if (ArrayToCheck[i] == Number)
+		{
+			std::cout << "Do not repeat numbers!" << std::endl;
+			return true;
+		}
+	}
+	return false;
+	/*
+	for (int x : ArrayToCheck)
+	{
+		if (x == ArrayToCheck)
+		{
+			isRepeated = true;
+			std::cout << "Do not repeat numbers!" << std::endl;
+		}
+	}*/
+}
+
 int main()
 {
 	int Lottery[5];
@@ -19,44 +41,36 @@ int main()
 	/* initialize random seed: */
 	srand(time(NULL));
 
-	for (int i = 0; i < sizeof(Lottery) / sizeof(int); i++)
+	int LotteryArraySize = sizeof(Lottery) / sizeof(int);
+
+	for (int i = 0; i < LotteryArraySize; i++)
 	{
 		// populate the Lottery array
 		int RandomNumber = 1 + rand() % 20;
 		bool isRandomRepeated = false;
 
-		for (int x : Lottery)
-		{
-			if (x == RandomNumber)
-			{
-				isRandomRepeated = true;
-				i--;
-			}
-		}
+		isRandomRepeated = IsNumberRepeated(Lottery, RandomNumber);
 
-		if (!isRandomRepeated)
+		if (isRandomRepeated)
+		{
+			//moves back 1 position to not leave gaps in the array
+			i--;
+		}
+		else
 		{
 			Lottery[i] = RandomNumber;
 		}
 	}
 
 	int index = 0;
-	while (index < (sizeof(Lottery) / sizeof(int)))
+	while (index < LotteryArraySize)
 	{
 		int UserInput;
 		bool isRepeated = false;
 		std::cout << "Enter your guess between [1, 20]: ";
 		std::cin >> UserInput;
 
-		// checks if the number is repeated
-		for (int x : UserGuess)
-		{
-			if (x == UserInput)
-			{
-				isRepeated = true;
-				std::cout << "Do not repeat numbers!" << std::endl;
-			}
-		}
+		isRepeated = IsNumberRepeated(UserGuess, UserInput);
 
 		// checks the rage of numbers and stores the value
 		if ((UserInput >= 1 && UserInput <= 20) && !isRepeated)
@@ -76,7 +90,7 @@ int main()
 	int Jackpot = 0;
 	std::cout << "\nLottery Result: ";
 
-	for (int i = 0; i < (sizeof(Lottery) / sizeof(int)); i++)
+	for (int i = 0 ; i < LotteryArraySize ; i++)
 	{
 		if (Lottery[i] == UserGuess[i])
 		{

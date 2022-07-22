@@ -15,8 +15,8 @@ int main()
 
 	/* initialize random seed: */
 	srand(time(NULL));
-
-	for (int i = 0; i < sizeof(Lottery) / sizeof(int); i++)
+	int LotteryArraySize = sizeof(Lottery) / sizeof(int);
+	for (int i = 0 ; i < LotteryArraySize ; i++)
 	{
 		//populate the Lottery array
 		int RandomNumber = 1 + rand() % 20;
@@ -38,7 +38,7 @@ int main()
 	}
 
 	int index = 0;
-	while (index < (sizeof(Lottery) / sizeof(int)))
+	while (index < LotteryArraySize)
 	{
 		int UserInput;
 		bool isRepeated = false;

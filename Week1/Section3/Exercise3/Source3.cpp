@@ -16,8 +16,7 @@ int main()
 		{
 			std::cout << i << ", ";
 		}
-
-		if (i % 10 != 0)
+		else
 		{
 			TotalSum += i;
 		}

@@ -8,16 +8,24 @@
 
 int main()
 {
-	int UserInput = -5;
+	int UserInput;
 	int LoopCounter = 0;
 	
-	while (!(UserInput >= 1) || !(UserInput <= 10))
+	do
 	{
 		std::cout << "Please enter a number between 1 - 10 : ";
 		std::cin >> UserInput;
 
 		LoopCounter++;
+
+		if (std::cin.fail())
+		{
+			std::cin.clear();
+			std::cin.ignore(100, '\n');
+			std::cout << "Wrong input!\n";
+		}
 	}
+	while (UserInput < 1 || UserInput > 10);
 
 	if (LoopCounter < 3) 
 	{

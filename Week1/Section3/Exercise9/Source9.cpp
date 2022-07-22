@@ -16,25 +16,25 @@ int main()
 	const int ArrayLength = (sizeof(MyArray) / sizeof(char));
 	int AuxiliarLength = ArrayLength - 1;
 
-	char ArrayVolteao[ArrayLength]; // creates a second array with the size of the first
+	char ArrayReverse[ArrayLength]; // creates a second array with the size of the first
 
-	for (int a = 0; a < ArrayLength; a++)
+	for (int i = 0; i < ArrayLength; i++)
 	{
-		if (MyArray[a] == '\0')
+		if (MyArray[i] == '\0')
 		{
-			ArrayVolteao[AuxiliarLength] = ' ';
+			ArrayReverse[AuxiliarLength] = ' ';
 		}
-		else if (MyArray[a] == '_')
+		else if (MyArray[i] == '_')
 		{
-			ArrayVolteao[AuxiliarLength] = '\0';
+			ArrayReverse[AuxiliarLength] = '\0';
 		}
 		else
 		{
-			ArrayVolteao[AuxiliarLength] = MyArray[a];
+			ArrayReverse[AuxiliarLength] = MyArray[i];
 		}
 		// std::cout << MyArray[AuxiliarLength] ;
 		AuxiliarLength--;
 	}
 
-	std::cout << "Arreglo volteao: " << ArrayVolteao << std::endl;
+	std::cout << "Arreglo volteao: " << ArrayReverse << std::endl;
 }
