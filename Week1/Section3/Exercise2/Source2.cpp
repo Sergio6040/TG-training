@@ -66,7 +66,7 @@ int main()
 		"Is a hot dog a taco though? "
 	};
 
-	bool Answers[3] = {
+	bool bAnswers[3] = {
 		true,
 		false,
 		false
@@ -74,24 +74,24 @@ int main()
 
 	std::cout << "Welcome to your quiz!\nAnswer\nF for False\nT for True\nYou only have 3 attempts per cuestion.\n" << std::endl;
 
-	bool bQuizAproved;
+	bool bQuizApproved;
 	// loop the Questions
 	for (int i = 0; i < 3; i++)
 	{
-		bool Result = MakeQuestion(Questions[i], Answers[i]);
+		bool bResult = MakeQuestion(Questions[i], bAnswers[i]);
 
-		if (!Result)
+		if (!bResult)
 		{
-			bQuizAproved = false;
+			bQuizApproved = false;
 			break;
 		}
 		else
 		{
-			bQuizAproved = true;
+			bQuizApproved = true;
 		}
 	}
 
-	if (bQuizAproved)
+	if (bQuizApproved)
 	{
 		std::cout << "Nice you pass the quiz!" << std::endl;
 	}

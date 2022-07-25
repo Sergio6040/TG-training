@@ -10,14 +10,14 @@
 
 int main()
 {
-	int MyArray[8] = {0, 0, 0, 0, 0, 0, 0, 0}; // if is not initialized it will put the value of INT_MIN
-	int EnteredNumbers = 0;
+	int EnteredNumbers[8] = {0, 0, 0, 0, 0, 0, 0, 0}; // if is not initialized it will put the value of INT_MIN
+	int Index = 0;
 
 	std::cout << "---- Press ENTER whenever you want to finish ----\n" << std::endl;
 
 	while (true)
 	{
-		if (EnteredNumbers >= sizeof(MyArray) / sizeof(int))
+		if (Index >= sizeof(EnteredNumbers) / sizeof(int))
 		{
 			std::cout << "you try exceed the length of the array!" << std::endl;
 			break;
@@ -28,7 +28,7 @@ int main()
 		{
 			break;
 		}
-		std::cin >> MyArray[EnteredNumbers];
+		std::cin >> EnteredNumbers[Index];
 
 		if (std::cin.fail())
 		{
@@ -37,7 +37,7 @@ int main()
 		}
 		else
 		{
-			EnteredNumbers++;
+			Index++;
 		}
 		
 		std::cin.ignore(1000, '\n');
@@ -45,13 +45,13 @@ int main()
 
 	int Sum = 0;
 	std::cout << "numbers entered: [";
-	for (int x : MyArray)
+	for (int Number : EnteredNumbers)
 	{
-		std::cout << x << " ";
-		Sum += x;
+		std::cout << Number << " ";
+		Sum += Number;
 	}
 
 	std::cout << "]" << std::endl;
 	std::cout << "The Sum of your numbers is: " << Sum << std::endl;
-	std::cout << "You entered " << EnteredNumbers << " number(s)" << std::endl;
+	std::cout << "You entered " << Index << " number(s)" << std::endl;
 }

@@ -9,20 +9,20 @@
 
 int main()
 {
-	int MyArray[8] = {0, 0, 0, 0, 0, 0, 0, 0};//if is not initialized it will put the value of INT_MIN
-	int EnteredNumbers = 0;
+	int EnteredNumbers[8] = {0, 0, 0, 0, 0, 0, 0, 0};//if is not initialized it will put the value of INT_MIN
+	int Index = 0;
 
 
 	
 	while (true)
 	{
-		if (EnteredNumbers >= sizeof(MyArray) / sizeof(int))
+		if (Index >= sizeof(EnteredNumbers) / sizeof(int))
 		{
 			std::cout << "you try exceed the length of the array!" << std::endl;
 			break;
 		}
 		std::cout << "Please enter a number: ";
-		std::cin >> MyArray[EnteredNumbers];
+		std::cin >> EnteredNumbers[Index];
 
 		if (std::cin.fail()) 
 		{
@@ -32,16 +32,16 @@ int main()
 			break;
 		}
 
-		EnteredNumbers++;
+		Index++;
 	}
 
 
 	int Sum = 0;
 	std::cout << "numbers entered: [";
-	for (int i : MyArray)
+	for (int Number : EnteredNumbers)
 	{
-		std::cout  << i << " ";
-		Sum += i;
+		std::cout  << Number << " ";
+		Sum += Number;
 	}
 
 	std::cout << "]" << std::endl;
