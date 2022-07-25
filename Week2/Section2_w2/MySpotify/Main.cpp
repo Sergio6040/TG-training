@@ -17,7 +17,7 @@
 
 int main()
 {
-	Song newSong = Song("Arabella", "Arctic Monkeys", 3027);
+	Song newSong = Song("Arabella", "Arctic Monkeys", 327);
 
 	std::cout << newSong.GetArtistName() << std::endl;
 	std::cout << newSong.GetSongTitle() << std::endl;
