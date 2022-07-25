@@ -28,17 +28,59 @@ Song #2		Artist #2		Duration #2
 
 #include <string>
 #include "Song.h"
+#include <vector>
 
 class Playlist
 {
 	const static int MaxSongCount = 25;
 	std::string PlaylistTitle;
 	Song SongList[MaxSongCount];
+	int SongListLength;
 	int SongCount;
 	
 public:
+	Playlist()
+	{
+		PlaylistTitle = "";
+		SongCount = 0;
+		SongListLength = 0;
+	}
+
 	Playlist(std::string NewTitle)
 	{
 		PlaylistTitle = NewTitle;
+		SongCount = 0;
+		SongListLength = 0;
+	}
+
+	bool AddSong(Song NewSong)
+	{
+		if (SongListLength < 25) {
+			SongList[SongListLength] = NewSong;
+			SongListLength++;
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	Song GetSong(int SongIndex) const
+	{
+		return SongList[SongIndex];
+	}
+
+	void DisplayPlaylist() const
+	{
+		std::cout << "\n	Playlist: " << PlaylistTitle << std::endl;
+		std::cout << "Nombre\t\tArtista\t\t\tDuracion" << std::endl;
+		std::cout << "------------------------------------------------------------" << std::endl;
+		for (Song  OutSong : SongList)
+		{
+			std::cout << OutSong.GetSongTitle() << "\t" << OutSong.GetArtistName() << "\t\t" << OutSong.GetFormatedDuration() << std::endl;
+		}
+		std::cout << "------------------------------------------------------------"  << std::endl;
+
 	}
 };

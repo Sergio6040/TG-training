@@ -14,13 +14,21 @@
 */
 
 #include "Song.h" //<--contains <iostream>
+#include "Playlist.h"
 
 int main()
 {
 	Song newSong = Song("Arabella", "Arctic Monkeys", 327);
+	Song newSong2 = Song("Arabella2", "Arctic Monkeys2", 327);
+	Song newSong3 = Song("Arabella3", "Arctic Monkeys3", 327);
 
-	std::cout << newSong.GetArtistName() << std::endl;
-	std::cout << newSong.GetSongTitle() << std::endl;
-	std::cout << newSong.GetFormatedDuration() << std::endl;
+	Playlist MyPlaylkist = Playlist("Los monos articos");
+
+	MyPlaylkist.AddSong(newSong);
+	MyPlaylkist.AddSong(newSong2);
+	MyPlaylkist.AddSong(newSong3);
+
+	MyPlaylkist.DisplayPlaylist();
+
 
 }
