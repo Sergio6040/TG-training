@@ -4,8 +4,8 @@
 
 * Your class should contain the following constructors and methods:
 * MilitaryClock();
-* MilitaryClock(short hours, short minutes);
-* void SetTime(short hours, short minutes);
+* MilitaryClock(short NewHours, short NewMinutes);
+* void SetTime(short NewHours, short NewMinutes);
 * void DisplayTime();
 */
 
@@ -24,29 +24,29 @@ public:
 		Time = "0000";
 	}
 
-	FMilitaryClock(short hours, short minutes)
+	FMilitaryClock(short NewHours, short NewMinutes)
 	{
-		SetTime(hours, minutes);
+		SetTime(NewHours, NewMinutes);
 	}
 
-	void SetTime(short hours, short minutes)
+	void SetTime(short NewHours, short NewMinutes)
 	{
-		if (hours < 10)
+		if (NewHours < 10)
 		{
-			HoursText = "0" + std::to_string(hours);
+			HoursText = "0" + std::to_string(NewHours);
 		}
 		else
 		{
-			HoursText = std::to_string(hours);
+			HoursText = std::to_string(NewHours);
 		}
 
-		if (minutes < 10)
+		if (NewMinutes < 10)
 		{
-			MinutesText = "0" + std::to_string(minutes);
+			MinutesText = "0" + std::to_string(NewMinutes);
 		}
 		else
 		{
-			MinutesText = std::to_string(minutes);
+			MinutesText = std::to_string(NewMinutes);
 		}
 
 		Time = HoursText + MinutesText;

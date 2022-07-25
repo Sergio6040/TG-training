@@ -24,9 +24,9 @@ public:
 		Text = " ";
 	}
 
-	FPrint(std::string outputText) 
+	FPrint(std::string OutText) 
 	{
-		Text = outputText;
+		Text = OutText;
 		std::cout << Text << std::endl;
 
 		PrintReversed();
@@ -36,16 +36,16 @@ public:
 
 	void PrintReversed()
 	{
-		int size = Text.length();
+		int Size = Text.length();
 
 		char TextReversed[10];
 
-		for (int i = size - 1; i >= 0; i--)
+		for (int i = Size - 1; i >= 0; i--)
 		{
-			TextReversed[size - 1 - i] = Text[i];
+			TextReversed[Size - 1 - i] = Text[i];
 		}
 
-		TextReversed[size] = 0;
+		TextReversed[Size] = 0;
 		std::cout << TextReversed << std::endl;
 	}
 

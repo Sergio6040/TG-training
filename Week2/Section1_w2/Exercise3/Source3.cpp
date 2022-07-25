@@ -1,8 +1,8 @@
 /*
 * Exercise 3 - Shapes and Areas
-* Create two classes: a Circle class and a Square class. For each class, take in the necessary information to calculate its area and perimeter.  Remember to validate input.
+* Create two classes: a Circle class and a Square class. For each class, take in the necessary information to calculate its area and perimeter.ï¿½ Remember to validate input.
 *
-* Ask the user if they want to create a circle or a square. For their pick, ask the necessary information to create the shape. Then, tell them the area and the perimeter of their shape.
+* Ask the user if they want to create a Circle or a square. For their pick, ask the necessary information to create the shape. Then, tell them the area and the perimeter of their shape.
 *
 * Your class should have the following methods:
 * ExampleShape();
@@ -31,16 +31,16 @@ public:
 
 	FCircle(float Radius)
 	{
-		this->Area = M_PI * pow(Radius, 2);
-		this->Perimeter = M_PI * 2.0f * Radius;
+		Area = M_PI * pow(Radius, 2);
+		Perimeter = M_PI * 2.0f * Radius;
 	}
 
-	float GetArea()
+	float GetArea() const
 	{
 		return Area;
 	}
 
-	float GetPerimiter()
+	float GetPerimiter() const
 	{
 		return Perimeter;
 	}
@@ -59,18 +59,18 @@ public:
 		Perimeter = 0.0f;
 	}
 
-	FSquare(float side)
+	FSquare(float Side)
 	{
-		this->Area = pow(side, 2);
-		this->Perimeter = 4 * side;
+		Area = pow(Side, 2);
+		Perimeter = 4 * Side;
 	}
 
-	float GetArea()
+	float GetArea() const
 	{
 		return Area;
 	}
 
-	float GetPerimiter()
+	float GetPerimiter() const
 	{
 		return Perimeter;
 	}
@@ -79,39 +79,41 @@ public:
 
 int main()
 {
-	int choice = 0;
-	while (choice == 0)
+	int Choice;
+	
+	do
 	{
-		std::cout << "Welcome to create-a-shape, what type of shape do you want?\n1 - Circle\n2 - Square\nYour choice : ";
-		std::cin >> choice;
+		std::cout << "Welcome to create-a-shape, what type of shape do you want?\n1 - Circle\n2 - Square\nYour Choice : ";
+		std::cin >> Choice;
 
-		if (choice < 1 && choice > 2)
+		if (Choice < 1 && Choice > 2)
 		{
 			std::cin.clear();
 			std::cin.ignore(100, '\n');
 			std::cout << "Wrong input" << std::endl;
-			choice = 0;
+			Choice = 0;
 		}
 	}
+	while (Choice == 0);
 
 	float MainArea = 0.0f;
 	float MainPerimeter = 0.0f;
-	FCircle circle;
+	FCircle Circle;
 	FSquare Square;
 
-	if (choice == 1)
+	if (Choice == 1)
 	{
 
 		float InputRadius;
-		std::cout << "Enter the radius for your circle: ";
+		std::cout << "Enter the radius for your Circle: ";
 		std::cin >> InputRadius;
 
-		circle = FCircle(InputRadius);
+		Circle = FCircle(InputRadius);
 
-		MainArea = circle.GetArea();
-		MainPerimeter = circle.GetPerimiter();
+		MainArea = Circle.GetArea();
+		MainPerimeter = Circle.GetPerimiter();
 	}
-	else if(choice == 2)
+	else if(Choice == 2)
 	{
 		float InputSide;
 		std::cout << "Enter the size for the sides of your square: ";
