@@ -1,6 +1,6 @@
 /*Exercise 1 - Songs
 * Create a Song class in your project. Make sure to declare it in a .h and define it in a .cpp.
-* 
+*
 * Your Song class should have the following private members:
 * std::string songTitle;
 * std::string artistName;
@@ -13,7 +13,7 @@
 * bool isValid(); // You decide how a song is considered valid or not
 */
 
-#include "Song.h"
+#include "Song.h" //<--contains <iostream>
 
 int main()
 {
