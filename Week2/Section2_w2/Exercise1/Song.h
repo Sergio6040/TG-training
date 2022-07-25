@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <string>
 
 class Song
 {
@@ -9,18 +10,18 @@ private:
 	int Duration;
 
 public:
-	Song(const std::string ReferenceSongTitle, const std::string ReferenceArtistName, const int ReferenceDuration)
+	Song(const std::string NewSongTitle, const std::string NewArtistName, const int NewDuration)
 	{
-		SongTitle = ReferenceSongTitle;
-		ArtistName = ReferenceArtistName;
-		Duration = ReferenceDuration;
+		SongTitle = NewSongTitle;
+		ArtistName = NewArtistName;
+		Duration = NewDuration;
 	}
 
 	std::string GetFormatedDuration()
 	{
-
-		std::string minutes = 
-		// Should return duration in the mm:ss format
+		std::string Minutes = std::to_string(Duration / 100);
+		std::string Seconds = std::to_string(Duration - (Duration / 100) * 100);
+		return Minutes + ":" + Seconds;
 	}
 
 	bool IsValid()

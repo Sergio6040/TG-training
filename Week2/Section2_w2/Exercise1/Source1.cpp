@@ -13,7 +13,14 @@
 * bool isValid(); // You decide how a song is considered valid or not
 */
 
+#include "Song.h"
+
 int main()
 {
+	Song newSong = Song("Arabella", "Arctic Monkeys", 3027);
+
+	std::cout << newSong.GetArtistName() << std::endl;
+	std::cout << newSong.GetSongTitle() << std::endl;
+	std::cout << newSong.GetFormatedDuration() << std::endl;
 
 }
