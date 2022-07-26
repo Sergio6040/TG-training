@@ -16,56 +16,69 @@
 * To do this, we need to define the following public method
 * void runApp();
 *
-* runApp should run a loop that will exit if the activeMenuCommand is set to Exit. 
-* If it’s not, it should do a switch on the activeMenuCommand to determine what it should do next. 
+* runApp should run a loop that will exit if the activeMenuCommand is set to Exit.
+* If it’s not, it should do a switch on the activeMenuCommand to determine what it should do next.
 * The implementations of each switch case can be empty for now, we just need somewhere to include the logic later.
 */
 
-#include "PlaylistContainer.h"
+#include "Spotify.h"
+#include <iostream>
 
-
-
-class Spotify
+FSpotify::FSpotify()
 {
-private:
-	PlaylistContainer MainPlaylist; 
+	ActiveCommand = MainMenu;
+}
 
-	enum MenuCommand
+void FSpotify::RunApp()
+{
+	while (ActiveCommand != Exit)
 	{
-		MainMenu,
-		CreatePlaylist,
-		BrowsePlaylist,
-		Exit
-	};
-
-	MenuCommand ActiveCommand;
-
-public:
-	Spotify()
-	{
-		ActiveCommand = MainMenu;
-	}
-
-	void RunApp()
-	{
-		while (ActiveCommand != Exit)
+		switch (ActiveCommand)
 		{
-			switch (ActiveCommand)
-			{
-			case MainMenu:
-				//code
+		case MainMenu:
+			OpenMainMenu();
+			break;
 
-				break;
-			case CreatePlaylist:
-				break;
-			case BrowsePlaylist:
-				break;
-			case Exit:
-				break;
-			default:
-				break;
-			}
+		case CreatePlaylist:
+			break;
+		case BrowsePlaylist:
+			break;
+		case Exit:
+			break;
+		}
+		system("cls");
 
+	}
+}
+
+void FSpotify::OpenMainMenu()
+{
+	int Input;
+	std::cout << "Welcome to Spotify! What would you like to do?\n1 - Create a Playlist\n2 - Browse Playlists\n3 - Exit" << std::endl;
+	std::cout << ">>";
+	std::cin >> Input;
+
+	if (Input > 0 && Input < 4 && !std::cin.fail())
+	{
+		switch (Input)
+		{
+		case 1:
+			ActiveCommand = CreatePlaylist;
+			break;
+
+		case 2:
+			ActiveCommand = BrowsePlaylist;
+			break;
+
+		case 3:
+			ActiveCommand = Exit;
+			break;
 		}
 	}
-};
+	else
+	{
+		std::cin.clear();
+		std::cin.ignore(100, '\n');
+		ActiveCommand = MainMenu;
+	}
+}
