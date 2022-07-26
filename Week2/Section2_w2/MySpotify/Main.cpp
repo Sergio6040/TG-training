@@ -11,6 +11,7 @@ When you make sure everything is working, you can continue to the next exercise.
 
 int main()
 {
+	/*
 	Song newSong[] =
 	{
 		Song("arabella", "Arctic Monkeys", 327),
@@ -42,6 +43,7 @@ int main()
 	{
 		MyContainer.GetPlaylist(i).DisplayPlaylist();
 	}
+	*/
 
 }
 
