@@ -14,7 +14,6 @@ public:
 
 	FFirstClass(int NewValue)
 	{
-		//I create this variable to identify the diferent instances. This was interesting I try using "this.Value" but VS correct me and use "this->Value" :)
 		Value = NewValue;
 		std::cout << "I'm the Constructor " << Value << std::endl;
 	}
