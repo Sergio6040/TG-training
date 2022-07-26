@@ -73,16 +73,16 @@ int main()
 	int Jackpot = 0;
 	std::cout << "\nLottery Result: ";
 
-	for (int i : Lottery) 
+	for (int LotteryNumber : Lottery) 
 	{
-		for (int j : UserGuess)
+		for (int GuessNumber : UserGuess)
 		{
-			if (i == j)
+			if (LotteryNumber == GuessNumber)
 			{
 				Jackpot += 10;
 			}
 		}
-		std::cout << i << " ";
+		std::cout << LotteryNumber << " ";
 	}
 
 	std::cout << "\nYour prize: " << Jackpot << " $" << std::endl;

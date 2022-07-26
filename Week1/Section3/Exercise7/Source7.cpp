@@ -38,9 +38,7 @@ int main()
 	{
 		// populate the Lottery array
 		int RandomNumber = 1 + rand() % 20;
-		bool bIsRandomRepeated = false;
-
-		bIsRandomRepeated = IsNumberRepeated(Lottery, RandomNumber);
+		bool bIsRandomRepeated = IsNumberRepeated(Lottery, RandomNumber);
 
 		if (bIsRandomRepeated)
 		{
