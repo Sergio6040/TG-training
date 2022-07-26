@@ -17,6 +17,10 @@ private:
 
 	MenuCommand ActiveCommand;
 
+	void OpenCreatePlaylistMenu();
+
+	bool AskForNewSong(Playlist PassPlaylist);
+
 public:
 	FSpotify();
 
