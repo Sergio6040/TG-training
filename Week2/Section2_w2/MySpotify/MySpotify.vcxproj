@@ -129,10 +129,12 @@
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Playlist.cpp" />
+    <ClCompile Include="PlaylistContainer.cpp" />
     <ClCompile Include="Song.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Playlist.h" />
+    <ClInclude Include="PlaylistContainer.h" />
     <ClInclude Include="Song.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

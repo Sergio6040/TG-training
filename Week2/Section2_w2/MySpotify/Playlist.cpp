@@ -7,21 +7,19 @@ Playlist::Playlist()
 {
 	PlaylistTitle = "";
 	SongCount = 0;
-	SongListLength = 0;
 }
 
 Playlist::Playlist(std::string NewTitle)
 {
 	PlaylistTitle = NewTitle;
 	SongCount = 0;
-	SongListLength = 0;
 }
 
 bool Playlist::AddSong(Song NewSong)
 {
-	if (SongListLength < 25 && NewSong.IsValid()) {
-		SongList[SongListLength] = NewSong;
-		SongListLength++;
+	if (SongCount < MaxSongCount && NewSong.IsValid()) {
+		SongList[SongCount] = NewSong;
+		SongCount++;
 		return true;
 	}
 	else
@@ -37,17 +35,25 @@ Song Playlist::GetSong(int SongIndex) const
 
 void Playlist::DisplayPlaylist() const
 {
-	std::cout << "\n	Playlist: " << PlaylistTitle << std::endl;
-	std::cout << "Nombre\t\tArtista\t\t\tDuracion" << std::endl;
-	std::cout << "------------------------------------------------------------" << std::endl;
-	for (Song OutSong : SongList)
+	if (PlaylistTitle != "")
 	{
-		if (OutSong.GetSongTitle() != "")
+		std::cout << "\n	Playlist: " << PlaylistTitle << std::endl;
+		std::cout << "Nombre\t\tArtista\t\t\tDuracion" << std::endl;
+		std::cout << "------------------------------------------------------------" << std::endl;
+		for (Song OutSong : SongList)
 		{
-			std::cout << OutSong.GetSongTitle() << "\t" << OutSong.GetArtistName() << "\t\t" << OutSong.GetFormatedDuration() << std::endl;
+			if (OutSong.GetSongTitle() != "")
+			{
+				std::cout << OutSong.GetSongTitle() << "\t" << OutSong.GetArtistName() << "\t\t" << OutSong.GetFormatedDuration() << std::endl;
+			}
 		}
+		std::cout << "------------------------------------------------------------" << std::endl;
 	}
-	std::cout << "------------------------------------------------------------" << std::endl;
 
+}
+
+std::string Playlist::GetPlaylistTitle() const
+{
+	return PlaylistTitle;
 }
 

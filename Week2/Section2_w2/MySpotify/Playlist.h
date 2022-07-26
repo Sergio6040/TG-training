@@ -30,10 +30,10 @@ Song #2		Artist #2		Duration #2
 
 class Playlist
 {
+private:
 	const static int MaxSongCount = 25;
 	std::string PlaylistTitle;
 	Song SongList[MaxSongCount];
-	int SongListLength;
 	int SongCount;
 	
 public:
@@ -45,4 +45,6 @@ public:
 	Song GetSong(int SongIndex) const;
 
 	void DisplayPlaylist() const;
+
+	std::string GetPlaylistTitle() const;
 };
