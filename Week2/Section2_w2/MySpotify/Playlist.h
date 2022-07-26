@@ -26,9 +26,7 @@ Song #2		Artist #2		Duration #2
 
 #pragma once
 
-#include <string>
 #include "Song.h"
-#include <vector>
 
 class Playlist
 {
@@ -39,48 +37,12 @@ class Playlist
 	int SongCount;
 	
 public:
-	Playlist()
-	{
-		PlaylistTitle = "";
-		SongCount = 0;
-		SongListLength = 0;
-	}
+	Playlist();
+	Playlist(std::string NewTitle);
 
-	Playlist(std::string NewTitle)
-	{
-		PlaylistTitle = NewTitle;
-		SongCount = 0;
-		SongListLength = 0;
-	}
+	bool AddSong(Song NewSong);
+	
+	Song GetSong(int SongIndex) const;
 
-	bool AddSong(Song NewSong)
-	{
-		if (SongListLength < 25) {
-			SongList[SongListLength] = NewSong;
-			SongListLength++;
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-
-	Song GetSong(int SongIndex) const
-	{
-		return SongList[SongIndex];
-	}
-
-	void DisplayPlaylist() const
-	{
-		std::cout << "\n	Playlist: " << PlaylistTitle << std::endl;
-		std::cout << "Nombre\t\tArtista\t\t\tDuracion" << std::endl;
-		std::cout << "------------------------------------------------------------" << std::endl;
-		for (Song  OutSong : SongList)
-		{
-			std::cout << OutSong.GetSongTitle() << "\t" << OutSong.GetArtistName() << "\t\t" << OutSong.GetFormatedDuration() << std::endl;
-		}
-		std::cout << "------------------------------------------------------------"  << std::endl;
-
-	}
+	void DisplayPlaylist() const;
 };

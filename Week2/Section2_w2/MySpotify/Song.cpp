@@ -1,4 +1,5 @@
 #include "Song.h"
+#include <string>
 
 Song::Song()
 {
