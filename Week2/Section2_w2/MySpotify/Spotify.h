@@ -17,6 +17,8 @@ private:
 
 	MenuCommand ActiveCommand;
 
+	void OpenMainMenu();
+
 	void OpenCreatePlaylistMenu();
 
 	bool AskForNewSong(Playlist PassPlaylist);
@@ -26,5 +28,4 @@ public:
 
 	void RunApp();
 
-	void OpenMainMenu();
 };

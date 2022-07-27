@@ -104,30 +104,37 @@ void FSpotify::OpenCreatePlaylistMenu()
 			{
 				std::cout << "\nSong added!\n" << std::endl;
 			}
-		}
+			else
+			{
+				std::cout << "\nFail to add the song!\n" << std::endl;
+			}
+		} 
 		
 
 		std::cout << "1 - Enter another song \n2 - Go back to main menu" << std::endl;
-		int UserChoice;
 		std::cin >> UserChoice;
 
-		if ((UserChoice < 1 && UserChoice > 2) || std::cin.fail())
+		if ((UserChoice < 1 || UserChoice > 2) || std::cin.fail())
 		{
 			std::cin.clear();
 			std::cin.ignore(100, '\n');
-			std::cout << "Wrong input" << std::endl;
 			UserChoice = 0;
 		}
-		
+
+		if (UserChoice == 2)
+		{
+			ActiveCommand = MainMenu;
+		}
+		system("cls");
 	} 
-	while (UserChoice == 0);
+	while (UserChoice == 0 || UserChoice == 1);
 
 	MainPlaylist.AddPlaylist(NewPlaylist);
 }
 
 bool FSpotify::AskForNewSong(Playlist PassPlaylist)
 {
-	std::cout << "add a song to " << PassPlaylist.GetPlaylistTitle() << std::endl;
+	std::cout << "add a song to " << PassPlaylist.GetPlaylistTitle() << "\n" << std::endl;
 
 	std::cout << "Please enter the song name: ";
 	std::string NewSongName;
@@ -145,6 +152,8 @@ bool FSpotify::AskForNewSong(Playlist PassPlaylist)
 
 		if (std::cin.fail() || NewDuration < 0) {
 			NewDuration = 0;
+			std::cin.clear();
+			std::cin.ignore(100, '\n');
 			std::cout << "Invalid duration" << std::endl;
 		}
 	} while (NewDuration == 0);
