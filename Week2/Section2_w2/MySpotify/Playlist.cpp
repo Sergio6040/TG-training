@@ -40,6 +40,7 @@ void Playlist::DisplayPlaylist() const
 		std::cout << "\n	Playlist: " << PlaylistTitle << std::endl;
 		std::cout << "Nombre\t\tArtista\t\t\tDuracion" << std::endl;
 		std::cout << "------------------------------------------------------------" << std::endl;
+
 		for (Song OutSong : SongList)
 		{
 			if (OutSong.GetSongTitle() != "")

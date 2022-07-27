@@ -36,9 +36,11 @@ void PlaylistContainer::DisplayContainer() const
 {
 	std::cout << "\n	you have: " << PlaylistCount << " playlist" << std::endl;
 	std::cout << "------------------------------------------------------------" << std::endl;
-	for (Playlist OutPlaylist : PlaylistArray)
+
+	for (int i = 0; i < PlaylistCount; i++)
 	{
-		std::cout << OutPlaylist.GetPlaylistTitle() << std::endl;
+		std::cout << i << " - " << PlaylistArray[i].GetPlaylistTitle() << std::endl;
 	}
+
 	std::cout << "------------------------------------------------------------" << std::endl;
 }

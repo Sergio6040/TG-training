@@ -44,7 +44,9 @@ void FSpotify::RunApp()
 			break;
 
 		case BrowsePlaylist:
+			openBrowsePlaylistsMenu();
 			break;
+
 		case Exit:
 			break;
 		}
@@ -97,9 +99,38 @@ void FSpotify::OpenCreatePlaylistMenu()
 
 	do
 	{
+
 		if (UserChoice == 1)
 		{
-			bool bSongAdded = AskForNewSong(NewPlaylist);
+			std::cout << "add a song to " << NewPlaylist.GetPlaylistTitle() << "\n" << std::endl;
+
+			std::cout << "Please enter the song name: ";
+			std::string NewSongName;
+			std::cin >> NewSongName;
+
+			std::cout << "Please enter the artist name: ";
+			std::string NewArtistName;
+			std::cin >> NewArtistName;
+
+			int NewDuration;
+			do
+			{
+				std::cout << "Please enter the song duration: ";
+				std::cin >> NewDuration;
+
+				if (std::cin.fail() || NewDuration < 0) {
+					NewDuration = 0;
+					std::cin.clear();
+					std::cin.ignore(100, '\n');
+					std::cout << "Invalid duration" << std::endl;
+				}
+
+			} while (NewDuration == 0);
+
+			Song NewSong = Song(NewSongName, NewArtistName, NewDuration);
+
+			bool bSongAdded = NewPlaylist.AddSong(NewSong);
+
 			if (bSongAdded)
 			{
 				std::cout << "\nSong added!\n" << std::endl;
@@ -108,10 +139,11 @@ void FSpotify::OpenCreatePlaylistMenu()
 			{
 				std::cout << "\nFail to add the song!\n" << std::endl;
 			}
-		} 
-		
 
+		}
+		
 		std::cout << "1 - Enter another song \n2 - Go back to main menu" << std::endl;
+		std::cout << ">>";
 		std::cin >> UserChoice;
 
 		if ((UserChoice < 1 || UserChoice > 2) || std::cin.fail())
@@ -132,35 +164,63 @@ void FSpotify::OpenCreatePlaylistMenu()
 	MainPlaylist.AddPlaylist(NewPlaylist);
 }
 
-bool FSpotify::AskForNewSong(Playlist PassPlaylist)
+void FSpotify::openBrowsePlaylistsMenu()
 {
-	std::cout << "add a song to " << PassPlaylist.GetPlaylistTitle() << "\n" << std::endl;
+	MainPlaylist.DisplayContainer();
 
-	std::cout << "Please enter the song name: ";
-	std::string NewSongName;
-	std::cin >> NewSongName;
+	std::cout << "Press Enter to return to the Main menu" << std::endl;
+	std::cout << "Which playlist do you want to see? >>";
 
-	std::cout << "Please enter the artist name: ";
-	std::string NewArtistName;
-	std::cin >> NewArtistName;
+	std::cin.clear();
+	std::cin.ignore(1000, '\n');
 
-	int NewDuration;
-	do
+	if (std::cin.peek() == '\n')
 	{
-		std::cout << "Please enter the song duration: ";
-		std::cin >> NewDuration;
+		ActiveCommand = MainMenu;
+		return;
+	}
 
-		if (std::cin.fail() || NewDuration < 0) {
-			NewDuration = 0;
-			std::cin.clear();
-			std::cin.ignore(100, '\n');
-			std::cout << "Invalid duration" << std::endl;
+	int UserInput;
+	std::cin >> UserInput;
+	
+	if (!std::cin.fail() && UserInput < MainPlaylist.GetPlaylistCount() && UserInput >= 0)
+	{
+		int SecondInput;
+		Playlist OutPlaylist = MainPlaylist.GetPlaylist(UserInput);
+
+		do
+		{
+			system("cls");
+			MainPlaylist.GetPlaylist(UserInput).DisplayPlaylist();
+
+			std::cout << "\n1 - Pick another playlist\n2 - Go back to main menu\n\nWhat do you want to do: ";
+			std::cin >> SecondInput;
+
+			if (SecondInput == 1)
+			{
+				continue;
+			}
+			else if (SecondInput == 2)
+			{
+				ActiveCommand = MainMenu;
+			}
+			else
+			{
+				std::cin.clear();
+				std::cin.ignore(1000, '\n');
+				SecondInput = 0;
+			}
 		}
-	} while (NewDuration == 0);
+		while (SecondInput == 0);
 
-	Song NewSong = Song(NewSongName, NewArtistName, NewDuration);
 
-	return PassPlaylist.AddSong(NewSong);
+	}
+	else
+	{
+		std::cin.clear();
+		std::cin.ignore(1000, '\n');
+	}
 
 	system("cls");
+
 }

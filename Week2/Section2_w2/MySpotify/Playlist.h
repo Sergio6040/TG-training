@@ -25,7 +25,6 @@ Song #2		Artist #2		Duration #2
 */
 
 #pragma once
-
 #include "Song.h"
 
 class Playlist

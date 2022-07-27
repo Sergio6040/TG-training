@@ -21,7 +21,7 @@ private:
 
 	void OpenCreatePlaylistMenu();
 
-	bool AskForNewSong(Playlist PassPlaylist);
+	void openBrowsePlaylistsMenu();
 
 public:
 	FSpotify();
