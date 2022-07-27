@@ -7,9 +7,9 @@
 
 #include <iostream>
 
-bool MakeQuestion(std::string Question, bool CorrectAnswer)
+bool MakeQuestion(std::string Question, bool bCorrectAnswer)
 {
-	bool bQuestionFailed = true;
+	bool bQuestionSucceded = false;
 	int Attempts = 0;
 	
 	do
@@ -29,36 +29,30 @@ bool MakeQuestion(std::string Question, bool CorrectAnswer)
 		std::cout << Question;
 		std::cin >> UserInput;
 
-		/* 
-		* bUserAnswer is decared as the inverse of the correct answer because, if the variable is set to a default value(like "true") 
-		* and the user enters a wrong input
-		* and the correct answer is equal to the default value, 
-		* the user will pass the question with an invalid input
-		*/
-
-		bool bUserAnswer = !CorrectAnswer;
+		bool bUserAnswer;
+		bool bIsValidInput;
 
 		if (UserInput == "t" || UserInput == "T")
 		{
 			bUserAnswer = true;
+			bIsValidInput = true;
 		}
 		else if (UserInput == "f" || UserInput == "F")
 		{
 			bUserAnswer = false;
+			bIsValidInput = true;
 		}
 		else
 		{
-			std::cout << "Do not mess with me. Please answer T or F." << std::endl;//this because if the user enters a wrong input, the next if condition will cause an error
+			std::cout << "Do not mess with me. Please answer T or F." << std::endl;
+			bIsValidInput = false;
 		}
 
-		if (bUserAnswer == CorrectAnswer)
-		{
-			bQuestionFailed = false;
-		}
+		bQuestionSucceded = bIsValidInput && (bUserAnswer == bCorrectAnswer);
 	} 
-	while (bQuestionFailed && Attempts < 3);
+	while (!bQuestionSucceded && Attempts < 3);
 
-	if (Attempts >= 3 && bQuestionFailed)
+	if (Attempts >= 3 && !bQuestionSucceded)
 	{
 		// fail the test
 		std::cout << "Number of attempts exceeded!" << std::endl;
