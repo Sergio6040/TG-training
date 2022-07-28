@@ -6,12 +6,17 @@ PlaylistContainer::PlaylistContainer()
 	PlaylistCount = 0;
 }
 
-void PlaylistContainer::AddPlaylist(Playlist NewPlaylist)
+bool PlaylistContainer::AddPlaylist(Playlist NewPlaylist)
 {
 	if (PlaylistCount < MaxPlaylistCount)
 	{
 		PlaylistArray[PlaylistCount] = NewPlaylist;
 		PlaylistCount++;
+		return true;
+	}
+	else
+	{
+		return false;
 	}
 }
 

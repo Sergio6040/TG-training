@@ -15,23 +15,16 @@ Song::Song(const std::string NewSongTitle, const std::string NewArtistName, cons
 	Duration = NewDuration;
 }
 
-std::string Song::GetFormatedDuration()
+std::string Song::GetFormatedDuration() const
 {
-	std::string Minutes = std::to_string(Duration / 100);
-	std::string Seconds = std::to_string(Duration - (Duration / 100) * 100);
+	std::string Minutes = std::to_string(Duration / 60);
+	std::string Seconds = std::to_string(Duration % 60);
 	return Minutes + ":" + Seconds;
 }
 
-bool Song::IsValid()
+bool Song::IsValid() const
 {
-	if (isupper(SongTitle[0]))
-	{
-		return true; //if the song name starts with an uppercase letter, is valid
-	}
-	else
-	{
-		return false;
-	}
+	return isupper(SongTitle[0]) && SongTitle != "" && Duration > 0;
 }
 
 //--------------------------getters & Setters--------------------------

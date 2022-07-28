@@ -27,8 +27,8 @@ public:
 	Song();
 	Song(const std::string NewSongTitle, const std::string NewArtistName, const int NewDuration);
 
-	std::string GetFormatedDuration();
-	bool IsValid();
+	std::string GetFormatedDuration() const;
+	bool IsValid() const;
 
 	//Song Title
 	std::string GetSongTitle() const;

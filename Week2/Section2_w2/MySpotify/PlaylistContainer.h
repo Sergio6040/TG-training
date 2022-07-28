@@ -26,7 +26,7 @@ private:
 public:
 	PlaylistContainer();
 
-	void AddPlaylist(Playlist NewPlaylist);
+	bool AddPlaylist(Playlist NewPlaylist);
 
 	Playlist GetPlaylist(int Index) const;
 

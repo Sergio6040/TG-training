@@ -17,7 +17,8 @@ Playlist::Playlist(std::string NewTitle)
 
 bool Playlist::AddSong(Song NewSong)
 {
-	if (SongCount < MaxSongCount && NewSong.IsValid()) {
+	if (SongCount < MaxSongCount && NewSong.IsValid()) 
+	{
 		SongList[SongCount] = NewSong;
 		SongCount++;
 		return true;

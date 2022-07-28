@@ -21,7 +21,7 @@ private:
 
 	void OpenCreatePlaylistMenu();
 
-	void openBrowsePlaylistsMenu();
+	void OpenBrowsePlaylistsMenu();
 
 public:
 	FSpotify();

@@ -44,10 +44,10 @@ void FSpotify::RunApp()
 			break;
 
 		case BrowsePlaylist:
-			openBrowsePlaylistsMenu();
+			OpenBrowsePlaylistsMenu();
 			break;
 
-		case Exit:
+		default:
 			break;
 		}
 		system("cls");
@@ -161,10 +161,15 @@ void FSpotify::OpenCreatePlaylistMenu()
 	} 
 	while (UserChoice == 0 || UserChoice == 1);
 
-	MainPlaylist.AddPlaylist(NewPlaylist);
+	if (!MainPlaylist.AddPlaylist(NewPlaylist))
+	{
+		std::cout << "Error at adding new playlist" << std::endl;
+		std::cin.get();
+		ActiveCommand = MainMenu;
+	}
 }
 
-void FSpotify::openBrowsePlaylistsMenu()
+void FSpotify::OpenBrowsePlaylistsMenu()
 {
 	MainPlaylist.DisplayContainer();
 
