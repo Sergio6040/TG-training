@@ -19,4 +19,6 @@ public:
 
 	void DeleteCategory(const int index);
 
+	void ShowCategories();
+
 };

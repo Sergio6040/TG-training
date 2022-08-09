@@ -1,4 +1,5 @@
 #include "CategoryHandler.h"
+#include <iostream>
 
 
 FCategoryHandler::FCategoryHandler()
@@ -33,4 +34,14 @@ void FCategoryHandler::DeleteCategory(const int index)
 	}
 	CategoriesAmount--;
 
+}
+
+void FCategoryHandler::ShowCategories()
+{
+	std::cout << "You have " << CategoriesAmount << "categories saved." << std::endl;
+	std::cout << "----------------------------------------------------\n" << std::endl;
+	for (int i = 0; i < CategoriesAmount; i++)
+	{
+		std::cout << "\t" << i << " - " << CategoryArray[i].GetCategoryName() << std::endl;
+	}
 }

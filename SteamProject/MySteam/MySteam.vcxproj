@@ -158,11 +158,13 @@
     <ClCompile Include="CategoryHandler.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Steam.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Category.h" />
     <ClInclude Include="CategoryHandler.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Steam.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
