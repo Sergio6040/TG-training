@@ -1,7 +1,8 @@
-
 #include <iostream>
+#include "Steam.h"
 
 int main()
 {
-    std::cout << "testing" << std::endl;
+    FSteam MySteam;
+    MySteam.RunApp();
 }

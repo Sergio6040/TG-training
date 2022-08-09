@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 
-class Game
+class FGame
 {
     std::string GameName;
     std::string StudioName;
@@ -11,9 +11,9 @@ class Game
     
 public:
 
-    Game();
+    FGame();
 
-    Game(const std::string NewGameName, const std::string NewStudioName, const std::string NewReleaseDate);
+    FGame(const std::string NewGameName, const std::string NewStudioName, const std::string NewReleaseDate);
     
     std::string GetGameName() const;
 

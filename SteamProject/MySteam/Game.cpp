@@ -1,12 +1,12 @@
 #include "Game.h"
 
-Game::Game()
+FGame::FGame()
 {
     GameName = "";
     StudioName = "";
 }
 
-Game::Game(const std::string NewGameName, const std::string NewStudioName, const std::string NewReleaseDate)
+FGame::FGame(const std::string NewGameName, const std::string NewStudioName, const std::string NewReleaseDate)
 {
     GameName = NewGameName;
     StudioName = NewStudioName;
@@ -14,50 +14,50 @@ Game::Game(const std::string NewGameName, const std::string NewStudioName, const
 
 
 //----------------------getters------------------------
-std::string Game::GetGameName() const
+std::string FGame::GetGameName() const
 {
     return GameName;
 }
 
-std::string Game::GetStudioName() const
+std::string FGame::GetStudioName() const
 {
     return StudioName;
 }
 
-std::string Game::GetReleaseDate() const
+std::string FGame::GetReleaseDate() const
 {
     return std::to_string(ReleaseDay) + "/" + std::to_string(ReleaseMonth) + "/" + std::to_string(ReleaseYear);
 }
 
 
 //----------------------setters------------------------
-void Game::SetGameName(const std::string NewGameName)
+void FGame::SetGameName(const std::string NewGameName)
 {
     GameName = NewGameName;
 }
 
-void Game::SetStudioName(const std::string NewStudioName)
+void FGame::SetStudioName(const std::string NewStudioName)
 {
     StudioName = NewStudioName;
 }
 
-void Game::SetReleaseDay(int NewReleaseDay)
+void FGame::SetReleaseDay(int NewReleaseDay)
 {
     ReleaseDay = NewReleaseDay;
 }
 
 
-void Game::SetReleaseMonth(int NewReleaseMonth)
+void FGame::SetReleaseMonth(int NewReleaseMonth)
 {
     ReleaseMonth = NewReleaseMonth;
 }
 
-void Game::SetReleaseYear(int NewReleaseYear)
+void FGame::SetReleaseYear(int NewReleaseYear)
 {
     ReleaseYear = NewReleaseYear;
 }
 
-bool Game::IsValid() const
+bool FGame::IsValid() const
 {
     return !GameName.empty();
 }

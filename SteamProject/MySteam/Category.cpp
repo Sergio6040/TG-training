@@ -1,32 +1,33 @@
 #include "Category.h"
 
-Category::Category()
+FCategory::FCategory()
 {
     CategoryName = "";
     GamesAmount = 0;
 }
 
-Category::Category(const std::string NewCategoryName)
+FCategory::FCategory(const std::string NewCategoryName)
 {
     CategoryName = NewCategoryName;
     GamesAmount = 0;
 }
     
-std::string Category::GetCategoryName() const
+std::string FCategory::GetCategoryName() const
 {
     return CategoryName;
 }
 
-void Category::SetCategoryName(const std::string NewCategoryName)
+void FCategory::SetCategoryName(const std::string NewCategoryName)
 {
     CategoryName = NewCategoryName;
 }
 
-bool Category::AddGame(Game NewGame)
+bool FCategory::AddGame(FGame NewGame)
 {
     if(HasSpaceForGames())
     {
         GameArray[GamesAmount] = NewGame;
+        GamesAmount++;
         return true;
     }
     else
@@ -36,7 +37,7 @@ bool Category::AddGame(Game NewGame)
     
 }
 
-bool Category::HasSpaceForGames() const
+bool FCategory::HasSpaceForGames() const
 {
     return GamesAmount < MaxGamesAmount;
 }

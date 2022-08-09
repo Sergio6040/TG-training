@@ -3,25 +3,25 @@
 
 #include "Game.h"
 
-class Category
+class FCategory
 {
 
     std::string CategoryName;
     const static int MaxGamesAmount = 25; 
-    Game GameArray[MaxGamesAmount];
+    FGame GameArray[MaxGamesAmount];
     int GamesAmount;
 
 public:
 
-    Category();
+    FCategory();
 
-    Category(const std::string NewCategoryName);
+    FCategory(const std::string NewCategoryName);
     
     std::string GetCategoryName() const;
 
     void SetCategoryName(const std::string NewCategoryName);
 
-    bool AddGame(Game NewGame);
+    bool AddGame(FGame NewGame);
 
     bool HasSpaceForGames() const;
 };
