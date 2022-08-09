@@ -4,14 +4,12 @@ Game::Game()
 {
     GameName = "";
     StudioName = "";
-    ReleaseDate =  "";
 }
 
 Game::Game(const std::string NewGameName, const std::string NewStudioName, const std::string NewReleaseDate)
 {
     GameName = NewGameName;
     StudioName = NewStudioName;
-    ReleaseDate =  NewReleaseDate;
 }
 
 
@@ -26,10 +24,11 @@ std::string Game::GetStudioName() const
     return StudioName;
 }
 
-std::string Game::GetDate() const
+std::string Game::GetReleaseDate() const
 {
-    return ReleaseDate;
+    return std::to_string(ReleaseDay) + "/" + std::to_string(ReleaseMonth) + "/" + std::to_string(ReleaseYear);
 }
+
 
 //----------------------setters------------------------
 void Game::SetGameName(const std::string NewGameName)
@@ -42,9 +41,20 @@ void Game::SetStudioName(const std::string NewStudioName)
     StudioName = NewStudioName;
 }
 
-void Game::SetReleaseDate(const std::string NewReleaseDate)
+void Game::SetReleaseDay(int NewReleaseDay)
 {
-    ReleaseDate = NewReleaseDate;
+    ReleaseDay = NewReleaseDay;
+}
+
+
+void Game::SetReleaseMonth(int NewReleaseMonth)
+{
+    ReleaseMonth = NewReleaseMonth;
+}
+
+void Game::SetReleaseYear(int NewReleaseYear)
+{
+    ReleaseYear = NewReleaseYear;
 }
 
 bool Game::IsValid() const
