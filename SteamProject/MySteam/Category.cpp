@@ -22,7 +22,7 @@ void FCategory::SetCategoryName(const std::string NewCategoryName)
     CategoryName = NewCategoryName;
 }
 
-bool FCategory::AddGame(FGame NewGame)
+bool FCategory::AddGame(const FGame NewGame)
 {
     if(HasSpaceForGames())
     {

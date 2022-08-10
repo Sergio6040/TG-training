@@ -13,7 +13,7 @@ public:
 
     FGame();
 
-    FGame(const std::string NewGameName, const std::string NewStudioName, const std::string NewReleaseDate);
+    FGame(const std::string NewGameName, const std::string NewStudioName, const int NewReleaseDay, const int NewReleaseMonth, const int NewReleaseYear);
     
     std::string GetGameName() const;
 

@@ -21,4 +21,10 @@ public:
 
 	void ShowCategories();
 
+	void AddGameToCategory(const int index, const FGame NewGame);
+
+	FCategory GetCategory(const int index);
+
+	FCategory GetCategory(const std::string NewCategoryName);
+
 };

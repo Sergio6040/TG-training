@@ -4,12 +4,18 @@ FGame::FGame()
 {
     GameName = "";
     StudioName = "";
+    ReleaseDay = 0;
+    ReleaseMonth = 0;
+    ReleaseYear = 0;
 }
 
-FGame::FGame(const std::string NewGameName, const std::string NewStudioName, const std::string NewReleaseDate)
+FGame::FGame(const std::string NewGameName, const std::string NewStudioName, const int NewReleaseDay, const int NewReleaseMonth, const int NewReleaseYear)
 {
     GameName = NewGameName;
     StudioName = NewStudioName;
+    ReleaseDay = NewReleaseDay;
+    ReleaseMonth = NewReleaseMonth;
+    ReleaseYear = NewReleaseYear;
 }
 
 
@@ -45,7 +51,6 @@ void FGame::SetReleaseDay(int NewReleaseDay)
 {
     ReleaseDay = NewReleaseDay;
 }
-
 
 void FGame::SetReleaseMonth(int NewReleaseMonth)
 {
