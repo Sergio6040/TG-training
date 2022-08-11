@@ -16,11 +16,11 @@ class FSteam
 		Exit
 	};
 
-	MenuOptions MenuActive;
-
 	void OpenAddGameMenu();
 
 	void OpenCategoriesMenu();
+
+	void OpenShowGamesMenu();
 
 	FGame AskForNewGame();
 
@@ -28,6 +28,5 @@ class FSteam
 
 public:
 
-	FSteam();
 	void RunApp();
 };

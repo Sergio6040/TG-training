@@ -14,7 +14,7 @@ int FCategoryHandler::GetCategoriesAmount() const
 
 bool FCategoryHandler::AddCategory(const FCategory NewCategory)
 {
-	if (CategoriesAmount < MaxCategoryAmount)
+	if (CategoriesAmount < MaxCategoryAmount && NewCategory.IsValid())
 	{
 		CategoryArray[CategoriesAmount] = NewCategory;
 		CategoriesAmount++;
@@ -25,6 +25,12 @@ bool FCategoryHandler::AddCategory(const FCategory NewCategory)
 		return false;
 	}
 }
+
+bool FCategoryHandler::bHasSpace() const
+{
+	return CategoriesAmount < MaxCategoryAmount;
+}
+
 
 bool FCategoryHandler::AddGameToCategory(const int index, const FGame NewGame)
 {

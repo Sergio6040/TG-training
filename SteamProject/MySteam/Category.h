@@ -24,4 +24,8 @@ public:
     bool AddGame(FGame NewGame);
 
     bool HasSpaceForGames() const;
+
+    bool IsValid() const;
+
+    
 };

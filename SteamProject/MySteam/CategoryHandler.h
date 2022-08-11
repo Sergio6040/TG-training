@@ -17,6 +17,8 @@ public:
 
 	bool AddCategory(const FCategory NewCategory);
 
+	bool bHasSpace() const;
+
 	void DeleteCategory(const int index);
 
 	void ShowCategories();

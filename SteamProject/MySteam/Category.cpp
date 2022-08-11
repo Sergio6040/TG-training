@@ -41,3 +41,8 @@ bool FCategory::HasSpaceForGames() const
 {
     return GamesAmount < MaxGamesAmount;
 }
+
+bool FCategory::IsValid() const
+{
+    return !CategoryName.empty();
+}

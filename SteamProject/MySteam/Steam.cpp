@@ -1,21 +1,14 @@
 #include "Steam.h"
 #include <iostream>
 
-FSteam::FSteam()
-{
-	MenuActive = MainMenu;
-}
 
 void FSteam::RunApp()
 {
-	FCategory testCategory = FCategory("Test");
-	MainHandler.AddCategory(testCategory);
-
 	while (true)
 	{
 		int UserOption;
 		std::cout << "------ Welcome to Steam! ------" << std::endl;
-		std::cout << "\t1 - Add New game \n\t2 - Working on... \n\t3 - Working on... \n\t4 - Exit \n" << ">>";
+		std::cout << "\t1 - Add New game \n\t2 - Categories Menu... \n\t3 - Show Games... \n\t4 - Exit \n" << ">>";
 		std::cin >> UserOption;
 
 		switch (UserOption)
@@ -25,13 +18,13 @@ void FSteam::RunApp()
 			break;
 
 		case ShowCategories:
+			OpenCategoriesMenu();
 			break;
 
 		case ShowGames:
 			break;
 
 		case Exit:
-			//MenuActive = Exit;
 			exit(1);
 			break;
 
@@ -173,7 +166,82 @@ void FSteam::OpenAddGameMenu()
 
 void FSteam::OpenCategoriesMenu()
 {
+	int CategoriesOption;
+	do
+	{
+		system("cls");
+		std::cout << "-----------------Cateories Menu-----------------" << std::endl;
+		std::cout << "\t\t1 - Add category \n\t\t2 - Delete category \n\t\t3 - return to Main menu \n" << std::endl;
+		CategoriesOption = ValidateInput("choose an option");
 
+		if (CategoriesOption == 1)
+		{
+			if (MainHandler.bHasSpace())
+			{
+				system("cls");
+				std::cout << "Enter the name of the category >> ";
+				std::string NewCategoryName;
+				std::cin >> NewCategoryName;
+
+				if (MainHandler.AddCategory(NewCategoryName))
+				{
+					std::cout << "Category added!" << std::endl;
+					std::cin.ignore();
+					std::cin.get();
+				}
+				else
+				{
+					std::cout << "Invalid name!" << std::endl;
+					std::cin.ignore();
+					std::cin.get();
+					CategoriesOption = 0;
+				}
+			}
+			else
+			{
+				std::cout << "You don't have more space for new categories!" << std::endl;
+				std::cin.ignore();
+				std::cin.get();
+				CategoriesOption = 0;
+			}
+		} 
+		else if (CategoriesOption == 2)
+		{
+			if (MainHandler.GetCategoriesAmount() == 0)
+			{
+				std::cout << "There are no categories saved." << std::endl;
+				std::cin.ignore();
+				std::cin.get();
+			}
+			else
+			{
+				do
+				{
+					system("cls");
+					MainHandler.ShowCategories();
+					int SelectedCategoryIndex = ValidateInput("Choose a category");
+					if (SelectedCategoryIndex >= 0 && SelectedCategoryIndex < MainHandler.GetCategoriesAmount())
+					{
+						MainHandler.DeleteCategory(SelectedCategoryIndex);
+						break;
+					}
+				} while (true);
+			}
+		}
+		else if(CategoriesOption == 3)
+		{
+			break;
+		}
+		else
+		{
+			CategoriesOption = 0;
+		}
+
+
+	} while (CategoriesOption == 0);
 }
 
-
+void FSteam::OpenShowGamesMenu()
+{
+	MainHandler.
+}
