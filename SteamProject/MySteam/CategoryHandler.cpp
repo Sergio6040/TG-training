@@ -26,9 +26,9 @@ bool FCategoryHandler::AddCategory(const FCategory NewCategory)
 	}
 }
 
-void FCategoryHandler::AddGameToCategory(const int index, const FGame NewGame)
+bool FCategoryHandler::AddGameToCategory(const int index, const FGame NewGame)
 {
-	CategoryArray[index].AddGame(NewGame);
+	return CategoryArray[index].AddGame(NewGame);
 }
 
 void FCategoryHandler::DeleteCategory(const int index)

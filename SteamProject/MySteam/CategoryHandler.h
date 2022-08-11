@@ -21,7 +21,7 @@ public:
 
 	void ShowCategories();
 
-	void AddGameToCategory(const int index, const FGame NewGame);
+	bool AddGameToCategory(const int index, const FGame NewGame);
 
 	FCategory GetCategory(const int index);
 

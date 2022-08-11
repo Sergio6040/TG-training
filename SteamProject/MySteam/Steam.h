@@ -20,6 +20,8 @@ class FSteam
 
 	void OpenAddGameMenu();
 
+	void OpenCategoriesMenu();
+
 	FGame AskForNewGame();
 
 	int ValidateInput(const std::string Question);

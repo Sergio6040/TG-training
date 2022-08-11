@@ -101,42 +101,39 @@ FGame FSteam::AskForNewGame()
 		{
 			bRepeat = true;
 		}
-		
-
 
 	} while (bRepeat);
 }
 
 void FSteam::OpenAddGameMenu()
 {
-	FCategory CategorySelected;
-	int CategoryIndex;
+	FGame NewGame = AskForNewGame();
 
-	if (MainHandler.GetCategoriesAmount() > 0)
+	bool bGameAdded;
+	char UserChoice;
+	do
 	{
-		char UserChoice;
-		do
+		system("cls");
+		std::cout << "Do you want to add the game to an existing category?(y/n)\n" << ">>";
+		std::cin >> UserChoice;
+
+		if (MainHandler.GetCategoriesAmount() <= 0)
 		{
-			std::cout << "Do you want to add the game to an existing category?(y/n)\n" << ">>";
-			std::cin >> UserChoice;
+			UserChoice = 'n';
+		}
 
-			if (UserChoice == 'y')
+		if (UserChoice == 'y')
+		{
+			system("cls");
+			MainHandler.ShowCategories();
+			std::cout << "\nSelect a category >>";
+			int CategoryIndex;
+			std::cin >> CategoryIndex;
+
+			if (CategoryIndex >= 0 && CategoryIndex < MainHandler.GetCategoriesAmount() && !std::cin.fail())
 			{
-				system("cls");
-				MainHandler.ShowCategories();
-				std::cout << "\nSelect a category >>";
-				std::cin >> CategoryIndex;
-
-				if (CategoryIndex >= 0 && CategoryIndex < MainHandler.GetCategoriesAmount() && !std::cin.fail()) 
-				{
-					CategorySelected = MainHandler.GetCategory(CategoryIndex);
-				}
-
-			}
-			else if (UserChoice == 'n')
-			{
-				CategorySelected = Uncategorized;
-				break;
+				bGameAdded = MainHandler.AddGameToCategory(CategoryIndex, NewGame);
+				std::cout << "Adding game to " << MainHandler.GetCategory(CategoryIndex).GetCategoryName() << std::endl;
 			}
 			else
 			{
@@ -146,24 +143,37 @@ void FSteam::OpenAddGameMenu()
 				std::cin.ignore(100, '\n');
 			}
 
-		} while (UserChoice == 'r');
+		}
+		else if (UserChoice == 'n')
+		{
+			std::cout << "Adding game to Uncategorized" << std::endl;
+			bGameAdded =  Uncategorized.AddGame(NewGame);
+			break;
+		}
+		else
+		{
+			//repeat loop
+			UserChoice = 'r';
+			std::cin.clear();
+			std::cin.ignore(100, '\n');
+		}
 
+	} while (UserChoice == 'r');
+
+	if (bGameAdded)
+	{
+		std::cout << "Game added!" << std::endl;
 	}
 	else
 	{
-		CategorySelected = Uncategorized;
+		std::cout << "Fail to add game!" << std::endl;
 	}
 
-	FGame NewGame = AskForNewGame();
+}
 
-	if (CategorySelected.GetCategoryName() != "Uncategorized")
-	{
-		MainHandler.AddGameToCategory(CategoryIndex, NewGame);
-	}
-	else
-	{
-		CategorySelected.AddGame(NewGame);
-	}
+void FSteam::OpenCategoriesMenu()
+{
+
 }
 
 
