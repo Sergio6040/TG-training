@@ -1,4 +1,5 @@
 #include "Category.h"
+#include <iostream>
 
 FCategory::FCategory()
 {
@@ -46,3 +47,15 @@ bool FCategory::IsValid() const
 {
     return !CategoryName.empty();
 }
+
+void FCategory::ShowAllGames() const
+{
+    for (FGame LoopGame : GameArray)
+    {
+        if (!LoopGame.GetGameName().empty())
+        {
+            std::cout << LoopGame.GetGameName() << "\t" << LoopGame.GetStudioName() << "\t" << LoopGame.GetReleaseDate() << std::endl;
+        }
+    }
+}
+

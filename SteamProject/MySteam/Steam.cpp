@@ -22,6 +22,7 @@ void FSteam::RunApp()
 			break;
 
 		case ShowGames:
+			OpenShowGamesMenu();
 			break;
 
 		case Exit:
@@ -139,7 +140,9 @@ void FSteam::OpenAddGameMenu()
 		}
 		else if (UserChoice == 'n')
 		{
-			std::cout << "Adding game to Uncategorized" << std::endl;
+			std::cout << "Adding game to Uncategorized" << std::endl; 
+			std::cin.ignore();
+			std::cin.get();
 			bGameAdded =  Uncategorized.AddGame(NewGame);
 			break;
 		}
@@ -171,7 +174,13 @@ void FSteam::OpenCategoriesMenu()
 	{
 		system("cls");
 		std::cout << "-----------------Cateories Menu-----------------" << std::endl;
-		std::cout << "\t\t1 - Add category \n\t\t2 - Delete category \n\t\t3 - return to Main menu \n" << std::endl;
+		std::cout << "\t\t1 - Add category \n\t\t2 - Delete category \n\t\or Press Enter to return to the Main menu \n" << std::endl;
+		std::cin.clear();
+		std::cin.ignore(1000, '\n');
+		if (std::cin.peek() == '\n')
+		{
+			break;
+		}
 		CategoriesOption = ValidateInput("choose an option");
 
 		if (CategoriesOption == 1)
@@ -228,10 +237,6 @@ void FSteam::OpenCategoriesMenu()
 				} while (true);
 			}
 		}
-		else if(CategoriesOption == 3)
-		{
-			break;
-		}
 		else
 		{
 			CategoriesOption = 0;
@@ -243,5 +248,14 @@ void FSteam::OpenCategoriesMenu()
 
 void FSteam::OpenShowGamesMenu()
 {
-	MainHandler.
+	system("cls");
+	std::cout << "\n---------------------------------------------------" << std::endl;
+	std::cout << "\tCategory name: " << Uncategorized.GetCategoryName() << std::endl;
+	Uncategorized.ShowAllGames();
+
+	MainHandler.ShowAllCategories();
+
+	std::cout << "\npress ENTER to return to main menu...";
+	std::cin.ignore();
+	std::cin.get();
 }

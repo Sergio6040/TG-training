@@ -41,7 +41,10 @@ void FCategoryHandler::DeleteCategory(const int index)
 {
 	for (int i = index; i < CategoriesAmount; i++)
 	{
-		CategoryArray[i] = CategoryArray[i + 1];
+		if (i + 1 < MaxCategoryAmount)
+		{
+			CategoryArray[i] = CategoryArray[i + 1];
+		}
 	}
 	CategoriesAmount--;
 
@@ -72,6 +75,19 @@ FCategory FCategoryHandler::GetCategory(const std::string NewCategoryName)
 		if (LoopCategory.GetCategoryName() == NewCategoryName)
 		{
 			return LoopCategory;
+		}
+	}
+}
+
+void FCategoryHandler::ShowAllCategories() const
+{
+	for (FCategory LoopCategory : CategoryArray)
+	{
+		if (!LoopCategory.GetCategoryName().empty())
+		{
+			std::cout << "\n---------------------------------------------------" << std::endl;
+			std::cout << "\tCategory name: " << LoopCategory.GetCategoryName() << std::endl;
+			LoopCategory.ShowAllGames();
 		}
 	}
 }

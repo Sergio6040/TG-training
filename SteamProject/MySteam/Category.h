@@ -27,5 +27,7 @@ public:
 
     bool IsValid() const;
 
+    void ShowAllGames() const;
+
     
 };

@@ -5,7 +5,7 @@
 
 class FCategoryHandler
 {
-	const static int MaxCategoryAmount = 25;
+	const static int MaxCategoryAmount = 5;
 	FCategory CategoryArray[MaxCategoryAmount];
 	int CategoriesAmount;
 
@@ -28,5 +28,7 @@ public:
 	FCategory GetCategory(const int index);
 
 	FCategory GetCategory(const std::string NewCategoryName);
+
+	void ShowAllCategories() const;
 
 };
