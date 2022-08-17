@@ -3,7 +3,6 @@
 
 FCategory::FCategory()
 {
-    CategoryName = "";
     GamesAmount = 0;
 }
 
@@ -31,11 +30,7 @@ bool FCategory::AddGame(const FGame NewGame)
         GamesAmount++;
         return true;
     }
-    else
-    {
-        return false;
-    }
-    
+    return false;
 }
 
 bool FCategory::HasSpaceForGames() const
@@ -52,7 +47,7 @@ void FCategory::ShowAllGames() const
 {
     for (FGame LoopGame : GameArray)
     {
-        if (!LoopGame.GetGameName().empty())
+        if (LoopGame.IsValid())
         {
             std::cout << LoopGame.GetGameName() << "\t" << LoopGame.GetStudioName() << "\t" << LoopGame.GetReleaseDate() << std::endl;
         }

@@ -3,6 +3,6 @@
 
 int main()
 {
-    FSteam MySteam;
-    MySteam.RunApp();
+    FSteam MainSteam;
+    MainSteam.RunApp();
 }

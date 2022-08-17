@@ -9,6 +9,7 @@ class FCategoryHandler
 	FCategory CategoryArray[MaxCategoryAmount];
 	int CategoriesAmount;
 
+
 public:
 
 	FCategoryHandler();
@@ -17,15 +18,15 @@ public:
 
 	bool AddCategory(const FCategory NewCategory);
 
-	bool bHasSpace() const;
+	bool HasSpace() const;
 
-	void DeleteCategory(const int index);
+	void DeleteCategory(const int Index);
 
 	void ShowCategories();
 
-	bool AddGameToCategory(const int index, const FGame NewGame);
+	bool AddGameToCategory(const int Index, const FGame NewGame);
 
-	FCategory GetCategory(const int index);
+	FCategory GetCategory(const int Index);
 
 	FCategory GetCategory(const std::string NewCategoryName);
 

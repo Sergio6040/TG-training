@@ -25,11 +25,11 @@ public:
 
     void SetStudioName(const std::string NewStudioName);
 
-    void SetReleaseDay(int ReleaseDay);
+    void SetReleaseDay(const int ReleaseDay);
     
-    void SetReleaseMonth(int NewReleaseMonth);
+    void SetReleaseMonth(const int NewReleaseMonth);
 
-    void SetReleaseYear(int NewReleaseYear);
+    void SetReleaseYear(const int NewReleaseYear);
     
     bool IsValid() const;
 };

@@ -21,7 +21,7 @@ public:
 
     void SetCategoryName(const std::string NewCategoryName);
 
-    bool AddGame(FGame NewGame);
+    bool AddGame(const FGame NewGame);
 
     bool HasSpaceForGames() const;
 

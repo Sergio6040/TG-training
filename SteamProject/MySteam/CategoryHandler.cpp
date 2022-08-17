@@ -20,34 +20,27 @@ bool FCategoryHandler::AddCategory(const FCategory NewCategory)
 		CategoriesAmount++;
 		return true;
 	}
-	else
-	{
-		return false;
-	}
+	return false;
 }
 
-bool FCategoryHandler::bHasSpace() const
+bool FCategoryHandler::HasSpace() const
 {
 	return CategoriesAmount < MaxCategoryAmount;
 }
 
 
-bool FCategoryHandler::AddGameToCategory(const int index, const FGame NewGame)
+bool FCategoryHandler::AddGameToCategory(const int Index, const FGame NewGame)
 {
-	return CategoryArray[index].AddGame(NewGame);
+	return CategoryArray[Index].AddGame(NewGame);
 }
 
-void FCategoryHandler::DeleteCategory(const int index)
+void FCategoryHandler::DeleteCategory(const int Index)
 {
-	for (int i = index; i < CategoriesAmount; i++)
-	{
-		if (i + 1 < MaxCategoryAmount)
-		{
-			CategoryArray[i] = CategoryArray[i + 1];
-		}
-	}
 	CategoriesAmount--;
-
+	for (int i = Index; i < CategoriesAmount; i++)
+	{
+		CategoryArray[i] = CategoryArray[i + 1];
+	}
 }
 
 void FCategoryHandler::ShowCategories()
@@ -60,23 +53,14 @@ void FCategoryHandler::ShowCategories()
 	}
 }
 
-FCategory FCategoryHandler::GetCategory(const int index)
+FCategory FCategoryHandler::GetCategory(const int Index)
 {
-	if (index < CategoriesAmount && index >= 0)
+	if (Index < CategoriesAmount && Index >= 0)
 	{
-		return CategoryArray[index];
+		return CategoryArray[Index];
 	}
-}
 
-FCategory FCategoryHandler::GetCategory(const std::string NewCategoryName)
-{
-	for (FCategory LoopCategory : CategoryArray)
-	{
-		if (LoopCategory.GetCategoryName() == NewCategoryName)
-		{
-			return LoopCategory;
-		}
-	}
+	return FCategory();
 }
 
 void FCategoryHandler::ShowAllCategories() const

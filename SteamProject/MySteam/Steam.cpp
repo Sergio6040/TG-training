@@ -1,5 +1,6 @@
 #include "Steam.h"
 #include <iostream>
+#include <string>
 
 
 void FSteam::RunApp()
@@ -7,9 +8,7 @@ void FSteam::RunApp()
 	while (true)
 	{
 		int UserOption;
-		std::cout << "------ Welcome to Steam! ------" << std::endl;
-		std::cout << "\t1 - Add New game \n\t2 - Categories Menu... \n\t3 - Show Games... \n\t4 - Exit \n" << ">>";
-		std::cin >> UserOption;
+		UserOption = ValidateInput("------ Welcome to Steam! ------\n\t1 - Add New game \n\t2 - Categories Menu... \n\t3 - Show Games... \n\t4 - Exit \n");
 
 		switch (UserOption)
 		{
@@ -26,77 +25,59 @@ void FSteam::RunApp()
 			break;
 
 		case Exit:
-			exit(1);
-			break;
-
-		default:
-			std::cin.clear();
-			std::cin.ignore(100, '\n');
-			break;
+			return;
 		}
-
-		system("cls");
 	}
 }
 
 
-int FSteam::ValidateInput(const std::string Question)
+int FSteam::ValidateInput(const std::string Question) const
 {
-	bool bRepeat;
+	int Input;
 	do
 	{
+		std::cin.clear();
+		std::cin.ignore(100, '\n');
+		system("cls");
+
 		std::cout << Question << " >>";
-		int Input;
 		std::cin >> Input;
 
-		if (std::cin.fail())
-		{
-			bRepeat = true;
-			std::cin.clear();
-			std::cin.ignore(100, '\n');
-			system("cls");
-		}
-		else
-		{
-			bRepeat = false;
-			return Input;
-		}
-
-	} while (bRepeat);
+	} while (std::cin.fail());
+	return Input;
 }
 
 FGame FSteam::AskForNewGame()
 {
-	bool bRepeat;
+	FGame NewGame;
 	do
 	{
 		system("cls");
+		std::cin.ignore(100, '\n');
 
 		std::cout << "Enter the game name >>";
 		std::string NewGameName;
-		std::cin >> NewGameName;
+		std::getline(std::cin, NewGameName);
 
 		std::cout << "Enter the name of the studio that develop the game >>";
 		std::string NewStudioName;
-		std::cin >> NewStudioName;
+		std::getline(std::cin, NewStudioName);
 
 		int GameDay = ValidateInput("Enter the release day");
 		int GameMonth = ValidateInput("Enter the release month");
 		int GameYear = ValidateInput("Enter the release year");
 
-		FGame NewGame = FGame(NewGameName, NewStudioName, GameDay, GameMonth, GameYear);
+		NewGame = FGame(NewGameName, NewStudioName, GameDay, GameMonth, GameYear);
 
-		if (NewGame.IsValid())
+		if (!NewGame.IsValid())
 		{
-			bRepeat = false;
-			return NewGame;
-		}
-		else
-		{
-			bRepeat = true;
+			std::cout << "Invalid Game...";
+			std::cin.ignore(100, '\n');
+			std::cin.get();
 		}
 
-	} while (bRepeat);
+	} while (std::cin.fail() || !NewGame.IsValid());
+	return NewGame;
 }
 
 void FSteam::OpenAddGameMenu()
@@ -185,7 +166,7 @@ void FSteam::OpenCategoriesMenu()
 
 		if (CategoriesOption == 1)
 		{
-			if (MainHandler.bHasSpace())
+			if (MainHandler.HasSpace())
 			{
 				system("cls");
 				std::cout << "Enter the name of the category >> ";

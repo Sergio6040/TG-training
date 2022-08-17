@@ -2,8 +2,6 @@
 
 FGame::FGame()
 {
-    GameName = "";
-    StudioName = "";
     ReleaseDay = 0;
     ReleaseMonth = 0;
     ReleaseYear = 0;
@@ -47,22 +45,23 @@ void FGame::SetStudioName(const std::string NewStudioName)
     StudioName = NewStudioName;
 }
 
-void FGame::SetReleaseDay(int NewReleaseDay)
+void FGame::SetReleaseDay(const int NewReleaseDay)
 {
     ReleaseDay = NewReleaseDay;
 }
 
-void FGame::SetReleaseMonth(int NewReleaseMonth)
+void FGame::SetReleaseMonth(const int NewReleaseMonth)
 {
     ReleaseMonth = NewReleaseMonth;
 }
 
-void FGame::SetReleaseYear(int NewReleaseYear)
+void FGame::SetReleaseYear(const int NewReleaseYear)
 {
     ReleaseYear = NewReleaseYear;
 }
 
 bool FGame::IsValid() const
 {
-    return !GameName.empty();
+    bool bDateIsValid = (ReleaseDay > 0 && ReleaseDay < 32) && (ReleaseMonth > 0 && ReleaseMonth < 13) && (ReleaseYear > 1958);
+    return !GameName.empty() && !StudioName.empty() && bDateIsValid;
 }

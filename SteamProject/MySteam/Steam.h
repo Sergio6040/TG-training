@@ -24,7 +24,7 @@ class FSteam
 
 	FGame AskForNewGame();
 
-	int ValidateInput(const std::string Question);
+	int ValidateInput(const std::string Question) const;
 
 public:
 
