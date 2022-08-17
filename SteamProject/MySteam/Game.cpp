@@ -7,7 +7,7 @@ FGame::FGame()
     ReleaseYear = 0;
 }
 
-FGame::FGame(const std::string NewGameName, const std::string NewStudioName, const int NewReleaseDay, const int NewReleaseMonth, const int NewReleaseYear)
+FGame::FGame(const std::string& NewGameName, const std::string& NewStudioName, const int& NewReleaseDay, const int& NewReleaseMonth, const int& NewReleaseYear)
 {
     GameName = NewGameName;
     StudioName = NewStudioName;
@@ -16,6 +16,10 @@ FGame::FGame(const std::string NewGameName, const std::string NewStudioName, con
     ReleaseYear = NewReleaseYear;
 }
 
+FGame::~FGame()
+{
+    //the destructor
+}
 
 //----------------------getters------------------------
 std::string FGame::GetGameName() const
@@ -35,33 +39,33 @@ std::string FGame::GetReleaseDate() const
 
 
 //----------------------setters------------------------
-void FGame::SetGameName(const std::string NewGameName)
+void FGame::SetGameName(const std::string& NewGameName)
 {
     GameName = NewGameName;
 }
 
-void FGame::SetStudioName(const std::string NewStudioName)
+void FGame::SetStudioName(const std::string& NewStudioName)
 {
     StudioName = NewStudioName;
 }
 
-void FGame::SetReleaseDay(const int NewReleaseDay)
+void FGame::SetReleaseDay(const int& NewReleaseDay)
 {
     ReleaseDay = NewReleaseDay;
 }
 
-void FGame::SetReleaseMonth(const int NewReleaseMonth)
+void FGame::SetReleaseMonth(const int& NewReleaseMonth)
 {
     ReleaseMonth = NewReleaseMonth;
 }
 
-void FGame::SetReleaseYear(const int NewReleaseYear)
+void FGame::SetReleaseYear(const int& NewReleaseYear)
 {
     ReleaseYear = NewReleaseYear;
 }
 
 bool FGame::IsValid() const
 {
-    bool bDateIsValid = (ReleaseDay > 0 && ReleaseDay < 32) && (ReleaseMonth > 0 && ReleaseMonth < 13) && (ReleaseYear > 1958);
+    const bool bDateIsValid = (ReleaseDay > 0 && ReleaseDay < 32) && (ReleaseMonth > 0 && ReleaseMonth < 13) && (ReleaseYear > 1958);
     return !GameName.empty() && !StudioName.empty() && bDateIsValid;
 }

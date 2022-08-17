@@ -8,12 +8,14 @@ class FGame
     int ReleaseDay;
     int ReleaseMonth;
     int ReleaseYear;
-    
+
 public:
 
     FGame();
 
-    FGame(const std::string NewGameName, const std::string NewStudioName, const int NewReleaseDay, const int NewReleaseMonth, const int NewReleaseYear);
+    FGame(const std::string& NewGameName, const std::string& NewStudioName, const int& NewReleaseDay, const int& NewReleaseMonth, const int& NewReleaseYear);
+
+    ~FGame();
     
     std::string GetGameName() const;
 
@@ -21,15 +23,15 @@ public:
     
     std::string GetReleaseDate() const;
     
-    void SetGameName(const std::string NewGameName);
+    void SetGameName(const std::string& NewGameName);
 
-    void SetStudioName(const std::string NewStudioName);
+    void SetStudioName(const std::string& NewStudioName);
 
-    void SetReleaseDay(const int ReleaseDay);
+    void SetReleaseDay(const int& ReleaseDay);
     
-    void SetReleaseMonth(const int NewReleaseMonth);
+    void SetReleaseMonth(const int& NewReleaseMonth);
 
-    void SetReleaseYear(const int NewReleaseYear);
+    void SetReleaseYear(const int& NewReleaseYear);
     
     bool IsValid() const;
 };
