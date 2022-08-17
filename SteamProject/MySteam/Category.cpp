@@ -54,3 +54,14 @@ void FCategory::ShowAllGames() const
     }
 }
 
+bool FCategory::GetGameAt(const int& Index, FGame& OutGame) const
+{
+    if (Index >= 0 && Index < GamesAmount)
+    {
+        OutGame = GameArray[Index];
+        return true;
+    }
+    return false;
+}
+
+

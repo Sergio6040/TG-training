@@ -29,5 +29,6 @@ public:
 
     void ShowAllGames() const;
 
-    
+    bool GetGameAt(const int& Index, FGame& OutGame) const;
+
 };
