@@ -15,13 +15,15 @@ public:
 
     FGame(const std::string& NewGameName, const std::string& NewStudioName, const int& NewReleaseDay, const int& NewReleaseMonth, const int& NewReleaseYear);
 
+    FGame(const FGame &InGame);
+
     ~FGame();
     
-    std::string GetGameName() const;
+    const std::string& GetGameName() const;
 
-    std::string GetStudioName() const;
+    const std::string& GetStudioName() const;
     
-    std::string GetReleaseDate() const;
+    const std::string& GetReleaseDate() const;
     
     void SetGameName(const std::string& NewGameName);
 

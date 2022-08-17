@@ -7,12 +7,34 @@ FCategoryHandler::FCategoryHandler()
 	CategoriesAmount = 0;
 }
 
+//-------------------------------------------------------------------------------------------------------------
+
+FCategoryHandler::FCategoryHandler(const FCategoryHandler& InHandler)
+{
+	CategoriesAmount = InHandler.CategoriesAmount;
+	for (int i = 0; i < CategoriesAmount; i++)
+	{
+		CategoryArray[i] = InHandler.CategoryArray[i];
+	}
+}
+
+//-------------------------------------------------------------------------------------------------------------
+
+FCategoryHandler::~FCategoryHandler()
+{
+	//the destructor
+}
+
+//-------------------------------------------------------------------------------------------------------------
+
 int FCategoryHandler::GetCategoriesAmount() const
 {
 	return CategoriesAmount;
 }
 
-bool FCategoryHandler::AddCategory(const FCategory NewCategory)
+//-------------------------------------------------------------------------------------------------------------
+
+bool FCategoryHandler::AddCategory(const FCategory& NewCategory)
 {
 	if (CategoriesAmount < MaxCategoryAmount && NewCategory.IsValid())
 	{
@@ -23,18 +45,23 @@ bool FCategoryHandler::AddCategory(const FCategory NewCategory)
 	return false;
 }
 
+//-------------------------------------------------------------------------------------------------------------
+
 bool FCategoryHandler::HasSpace() const
 {
 	return CategoriesAmount < MaxCategoryAmount;
 }
 
+//-------------------------------------------------------------------------------------------------------------
 
-bool FCategoryHandler::AddGameToCategory(const int Index, const FGame NewGame)
+bool FCategoryHandler::AddGameToCategory(const int& Index, const FGame& NewGame)
 {
 	return CategoryArray[Index].AddGame(NewGame);
 }
 
-void FCategoryHandler::DeleteCategory(const int Index)
+//-------------------------------------------------------------------------------------------------------------
+
+void FCategoryHandler::DeleteCategory(const int& Index)
 {
 	CategoriesAmount--;
 	for (int i = Index; i < CategoriesAmount; i++)
@@ -42,6 +69,8 @@ void FCategoryHandler::DeleteCategory(const int Index)
 		CategoryArray[i] = CategoryArray[i + 1];
 	}
 }
+
+//-------------------------------------------------------------------------------------------------------------
 
 void FCategoryHandler::ShowCategories()
 {
@@ -53,7 +82,9 @@ void FCategoryHandler::ShowCategories()
 	}
 }
 
-FCategory FCategoryHandler::GetCategory(const int Index)
+//-------------------------------------------------------------------------------------------------------------
+
+const FCategory& FCategoryHandler::GetCategory(const int& Index)
 {
 	if (Index < CategoriesAmount && Index >= 0)
 	{
@@ -62,6 +93,8 @@ FCategory FCategoryHandler::GetCategory(const int Index)
 
 	return FCategory();
 }
+
+//-------------------------------------------------------------------------------------------------------------
 
 void FCategoryHandler::ShowAllCategories() const
 {

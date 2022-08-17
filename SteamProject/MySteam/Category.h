@@ -1,6 +1,5 @@
 #pragma once
 #include <string>
-
 #include "Game.h"
 
 class FCategory
@@ -16,8 +15,12 @@ public:
     FCategory();
 
     FCategory(const std::string& NewCategoryName);
+
+    FCategory(const FCategory &InCategory);
+
+    ~FCategory();
     
-    std::string GetCategoryName() const;
+    const std::string& GetCategoryName() const;
 
     void SetCategoryName(const std::string& NewCategoryName);
 

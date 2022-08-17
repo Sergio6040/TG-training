@@ -7,6 +7,8 @@ FGame::FGame()
     ReleaseYear = 0;
 }
 
+//-------------------------------------------------------------------------------------------------------------
+
 FGame::FGame(const std::string& NewGameName, const std::string& NewStudioName, const int& NewReleaseDay, const int& NewReleaseMonth, const int& NewReleaseYear)
 {
     GameName = NewGameName;
@@ -16,53 +18,83 @@ FGame::FGame(const std::string& NewGameName, const std::string& NewStudioName, c
     ReleaseYear = NewReleaseYear;
 }
 
+//-------------------------------------------------------------------------------------------------------------
+
+FGame::FGame(const FGame& InGame)
+{
+    GameName = InGame.GameName;
+    StudioName = InGame.StudioName;
+    ReleaseDay = InGame.ReleaseDay;
+    ReleaseMonth = InGame.ReleaseMonth;
+    ReleaseYear = InGame.ReleaseYear;
+}
+
+//-------------------------------------------------------------------------------------------------------------
+
 FGame::~FGame()
 {
     //the destructor
 }
 
-//----------------------getters------------------------
-std::string FGame::GetGameName() const
+/* -------------------------------------------------------------------------------------------------------------
+*                               Getters      
+* -------------------------------------------------------------------------------------------------------------*/
+const std::string& FGame::GetGameName() const
 {
     return GameName;
 }
 
-std::string FGame::GetStudioName() const
+//-------------------------------------------------------------------------------------------------------------
+const std::string& FGame::GetStudioName() const
 {
     return StudioName;
 }
 
-std::string FGame::GetReleaseDate() const
+//-------------------------------------------------------------------------------------------------------------
+const std::string& FGame::GetReleaseDate() const
 {
     return std::to_string(ReleaseDay) + "/" + std::to_string(ReleaseMonth) + "/" + std::to_string(ReleaseYear);
 }
 
 
-//----------------------setters------------------------
+/* -------------------------------------------------------------------------------------------------------------
+*                               Setters
+* -------------------------------------------------------------------------------------------------------------*/
+
 void FGame::SetGameName(const std::string& NewGameName)
 {
     GameName = NewGameName;
 }
+
+//-------------------------------------------------------------------------------------------------------------
 
 void FGame::SetStudioName(const std::string& NewStudioName)
 {
     StudioName = NewStudioName;
 }
 
+//-------------------------------------------------------------------------------------------------------------
+
 void FGame::SetReleaseDay(const int& NewReleaseDay)
 {
     ReleaseDay = NewReleaseDay;
 }
+
+//-------------------------------------------------------------------------------------------------------------
 
 void FGame::SetReleaseMonth(const int& NewReleaseMonth)
 {
     ReleaseMonth = NewReleaseMonth;
 }
 
+//-------------------------------------------------------------------------------------------------------------
+
 void FGame::SetReleaseYear(const int& NewReleaseYear)
 {
     ReleaseYear = NewReleaseYear;
 }
+
+//-------------------------------------------------------------------------------------------------------------
 
 bool FGame::IsValid() const
 {
