@@ -31,7 +31,7 @@ void FSteam::RunApp()
 }
 
 
-int FSteam::ValidateInput(const std::string Question) const
+int FSteam::ValidateInput(const std::string& Question) const
 {
 	int Input;
 	do
@@ -47,7 +47,7 @@ int FSteam::ValidateInput(const std::string Question) const
 	return Input;
 }
 
-FGame FSteam::AskForNewGame()
+const FGame& FSteam::AskForNewGame()
 {
 	FGame NewGame;
 	do
@@ -97,25 +97,8 @@ void FSteam::OpenAddGameMenu()
 
 			if (UserChoice == 'y')
 			{
-				system("cls");
-				MainHandler.ShowCategories();
-				std::cout << "\nSelect a category >>";
-				int CategoryIndex;
-				std::cin >> CategoryIndex;
-
-				if (CategoryIndex >= 0 && CategoryIndex < MainHandler.GetCategoriesAmount() && !std::cin.fail())
-				{
-					bGameAdded = MainHandler.AddGameToCategory(CategoryIndex, NewGame);
-					std::cout << "Adding game to " << MainHandler.GetCategory(CategoryIndex).GetCategoryName() << std::endl;
-				}
-				else
-				{
-					//repeat loop
-					UserChoice = 'r';
-					std::cin.clear();
-					std::cin.ignore(100, '\n');
-				}
-
+				bGameAdded = AddGameMenu(NewGame);
+				std::cout << "Game added!" << std::endl;
 			}
 			else if (UserChoice == 'n')
 			{
@@ -127,22 +110,16 @@ void FSteam::OpenAddGameMenu()
 			}
 			else
 			{
-				//repeat loop
-				UserChoice = 'r';
+				bGameAdded = false;
 				std::cin.clear();
 				std::cin.ignore(100, '\n');
 			}
 
-		} while (UserChoice == 'r');
+		} while (!bGameAdded);
+	}
+	else
+	{
 
-		if (bGameAdded)
-		{
-			std::cout << "Game added!" << std::endl;
-		}
-		else
-		{
-			std::cout << "Fail to add game!" << std::endl;
-		}
 	}
 
 }
@@ -163,67 +140,18 @@ void FSteam::OpenCategoriesMenu()
 		}
 		CategoriesOption = ValidateInput("choose an option");
 
-		if (CategoriesOption == 1)
+		switch (CategoriesOption)
 		{
-			if (MainHandler.HasSpace())
-			{
-				system("cls");
-				std::cout << "Enter the name of the category >> ";
-				std::string NewCategoryName;
-				std::cin >> NewCategoryName;
+		case 1:
+			AddCategoryMenu();
+			break;
 
-				if (MainHandler.AddCategory(NewCategoryName))
-				{
-					std::cout << "Category added!" << std::endl;
-					std::cin.ignore();
-					std::cin.get();
-				}
-				else
-				{
-					std::cout << "Invalid name!" << std::endl;
-					std::cin.ignore();
-					std::cin.get();
-					CategoriesOption = 0;
-				}
-			}
-			else
-			{
-				std::cout << "You don't have more space for new categories!" << std::endl;
-				std::cin.ignore();
-				std::cin.get();
-				CategoriesOption = 0;
-			}
-		} 
-		else if (CategoriesOption == 2)
-		{
-			if (MainHandler.GetCategoriesAmount() == 0)
-			{
-				std::cout << "There are no categories saved." << std::endl;
-				std::cin.ignore();
-				std::cin.get();
-			}
-			else
-			{
-				do
-				{
-					system("cls");
-					MainHandler.ShowCategories();
-					int SelectedCategoryIndex = ValidateInput("Choose a category");
-					if (SelectedCategoryIndex >= 0 && SelectedCategoryIndex < MainHandler.GetCategoriesAmount())
-					{
-						MainHandler.DeleteCategory(SelectedCategoryIndex);
-						break;
-					}
-				} while (true);
-			}
-		}
-		else
-		{
-			CategoriesOption = 0;
+		case 2:
+			DeleteCategoryMenu();
+			break;
 		}
 
-
-	} while (CategoriesOption == 0);
+	} while (CategoriesOption > 1 && CategoriesOption < 2);
 }
 
 void FSteam::OpenShowGamesMenu()
@@ -238,4 +166,83 @@ void FSteam::OpenShowGamesMenu()
 	std::cout << "\npress ENTER to return to main menu...";
 	std::cin.ignore();
 	std::cin.get();
+}
+
+bool FSteam::AddCategoryMenu()
+{
+	if (MainHandler.HasSpace())
+	{
+		system("cls");
+		std::cout << "Enter the name of the category >> ";
+		std::string NewCategoryName;
+		std::getline(std::cin, NewCategoryName);
+
+		if (MainHandler.AddCategory(NewCategoryName))
+		{
+			std::cout << "Category added!" << std::endl;
+			std::cin.ignore();
+			std::cin.get();
+			return true;
+		}
+		else
+		{
+			std::cout << "Invalid name!" << std::endl;
+			std::cin.ignore();
+			std::cin.get();
+			return false;
+		}
+	}
+	else
+	{
+		std::cout << "You don't have more space for new categories!" << std::endl;
+		std::cin.ignore();
+		std::cin.get();
+		return false;
+
+	}
+}
+
+void FSteam::DeleteCategoryMenu()
+{
+	if (MainHandler.GetCategoriesAmount() == 0)
+	{
+		std::cout << "There are no categories saved." << std::endl;
+		std::cin.ignore();
+		std::cin.get();
+	}
+	else
+	{
+		do
+		{
+			system("cls");
+			MainHandler.ShowCategories();
+			int SelectedCategoryIndex = ValidateInput("Choose a category");
+			if (SelectedCategoryIndex >= 0 && SelectedCategoryIndex < MainHandler.GetCategoriesAmount())
+			{
+				MainHandler.DeleteCategory(SelectedCategoryIndex);
+				break;
+			}
+		} while (true);
+	}
+}
+
+bool FSteam::AddGameMenu(const FGame& InGame)
+{
+	system("cls");
+	MainHandler.ShowCategories();
+	std::cout << "\nSelect a category >>";
+	int CategoryIndex;
+	std::cin >> CategoryIndex;
+
+	if (CategoryIndex >= 0 && CategoryIndex < MainHandler.GetCategoriesAmount() && !std::cin.fail())
+	{
+		std::cout << "Adding game to " << MainHandler.GetCategory(CategoryIndex).GetCategoryName() << std::endl;
+		return MainHandler.AddGameToCategory(CategoryIndex, InGame);
+	}
+	else
+	{
+		std::cin.clear();
+		std::cin.ignore(100, '\n');
+		return false;
+	}
 }
