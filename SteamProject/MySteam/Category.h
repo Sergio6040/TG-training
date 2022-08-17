@@ -15,13 +15,13 @@ public:
 
     FCategory();
 
-    FCategory(const std::string NewCategoryName);
+    FCategory(const std::string& NewCategoryName);
     
     std::string GetCategoryName() const;
 
-    void SetCategoryName(const std::string NewCategoryName);
+    void SetCategoryName(const std::string& NewCategoryName);
 
-    bool AddGame(const FGame NewGame);
+    bool AddGame(const FGame& NewGame);
 
     bool HasSpaceForGames() const;
 

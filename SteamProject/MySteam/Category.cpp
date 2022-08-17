@@ -6,7 +6,7 @@ FCategory::FCategory()
     GamesAmount = 0;
 }
 
-FCategory::FCategory(const std::string NewCategoryName)
+FCategory::FCategory(const std::string& NewCategoryName)
 {
     CategoryName = NewCategoryName;
     GamesAmount = 0;
@@ -17,12 +17,12 @@ std::string FCategory::GetCategoryName() const
     return CategoryName;
 }
 
-void FCategory::SetCategoryName(const std::string NewCategoryName)
+void FCategory::SetCategoryName(const std::string& NewCategoryName)
 {
     CategoryName = NewCategoryName;
 }
 
-bool FCategory::AddGame(const FGame NewGame)
+bool FCategory::AddGame(const FGame& NewGame)
 {
     if(HasSpaceForGames())
     {
