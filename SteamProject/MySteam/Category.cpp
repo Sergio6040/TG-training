@@ -19,12 +19,14 @@ FCategory::FCategory(const FCategory &InCategory)
     CategoryName = InCategory.CategoryName;
     GamesAmount = InCategory.GamesAmount;
 
-    //is this necessary?
-    //is there any other way to do this?
+    //Memory copie array
+    memcpy_s(GameArray, sizeof GameArray, InCategory.GameArray, sizeof InCategory.GameArray);
+
+    /*
     for (int i=0; i < GamesAmount; i++)
     {
         GameArray[i] = InCategory.GameArray[i];
-    }
+    }*/
 
 }
 
@@ -78,11 +80,11 @@ bool FCategory::IsValid() const
 
 void FCategory::ShowAllGames() const
 {
-    for (FGame LoopGame : GameArray)
+    for (const FGame& LoopGame : GameArray)
     {
         if (LoopGame.IsValid())
         {
-            std::cout << LoopGame.GetGameName() << "\t" << LoopGame.GetStudioName() << "\t" << LoopGame.GetReleaseDate() << std::endl;
+            LoopGame.PrintGame();
         }
     }
 }

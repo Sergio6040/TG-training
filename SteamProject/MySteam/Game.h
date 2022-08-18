@@ -23,7 +23,7 @@ public:
 
     const std::string& GetStudioName() const;
     
-    const std::string& GetReleaseDate() const;
+    const std::string GetReleaseDate() const;
     
     void SetGameName(const std::string& NewGameName);
 
@@ -36,4 +36,6 @@ public:
     void SetReleaseYear(const int& NewReleaseYear);
     
     bool IsValid() const;
+
+    void PrintGame() const;
 };

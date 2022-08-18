@@ -22,7 +22,7 @@ class FSteam
 
 	void OpenShowGamesMenu();
 
-	const FGame& AskForNewGame();
+	const FGame AskForNewGame() const;
 
 	int ValidateInput(const std::string& Question) const;
 

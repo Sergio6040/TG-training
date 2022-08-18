@@ -12,10 +12,14 @@ FCategoryHandler::FCategoryHandler()
 FCategoryHandler::FCategoryHandler(const FCategoryHandler& InHandler)
 {
 	CategoriesAmount = InHandler.CategoriesAmount;
+
+	memcpy_s(CategoryArray, sizeof CategoryArray, InHandler.CategoryArray, sizeof InHandler.CategoryArray);
+
+	/*
 	for (int i = 0; i < CategoriesAmount; i++)
 	{
 		CategoryArray[i] = InHandler.CategoryArray[i];
-	}
+	}*/
 }
 
 //-------------------------------------------------------------------------------------------------------------

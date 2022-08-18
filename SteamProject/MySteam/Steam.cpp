@@ -7,6 +7,7 @@ void FSteam::RunApp()
 {
 	while (true)
 	{
+		system("cls");
 		int UserOption;
 		UserOption = ValidateInput("------ Welcome to Steam! ------\n\t1 - Add New game \n\t2 - Categories Menu... \n\t3 - Show Games... \n\t4 - Exit \n");
 
@@ -30,24 +31,28 @@ void FSteam::RunApp()
 	}
 }
 
+//-------------------------------------------------------------------------------------------------------------
 
 int FSteam::ValidateInput(const std::string& Question) const
 {
 	int Input;
-	do
+	std::cout << Question << " >>";
+	std::cin >> Input;
+
+	while (std::cin.fail())
 	{
 		std::cin.clear();
 		std::cin.ignore(100, '\n');
 		system("cls");
-
 		std::cout << Question << " >>";
 		std::cin >> Input;
-
-	} while (std::cin.fail());
+	}
 	return Input;
 }
 
-const FGame& FSteam::AskForNewGame()
+//-------------------------------------------------------------------------------------------------------------
+
+const FGame FSteam::AskForNewGame() const
 {
 	FGame NewGame;
 	do
@@ -80,6 +85,8 @@ const FGame& FSteam::AskForNewGame()
 	return NewGame;
 }
 
+//-------------------------------------------------------------------------------------------------------------
+
 void FSteam::OpenAddGameMenu()
 {
 	FGame NewGame = AskForNewGame();
@@ -98,7 +105,6 @@ void FSteam::OpenAddGameMenu()
 			if (UserChoice == 'y')
 			{
 				bGameAdded = AddGameMenu(NewGame);
-				std::cout << "Game added!" << std::endl;
 			}
 			else if (UserChoice == 'n')
 			{
@@ -119,10 +125,15 @@ void FSteam::OpenAddGameMenu()
 	}
 	else
 	{
-
+		std::cout << "Adding game to Uncategorized" << std::endl;
+		std::cin.ignore();
+		std::cin.get();
+		bGameAdded = Uncategorized.AddGame(NewGame);
 	}
 
 }
+
+//-------------------------------------------------------------------------------------------------------------
 
 void FSteam::OpenCategoriesMenu()
 {
@@ -132,13 +143,14 @@ void FSteam::OpenCategoriesMenu()
 		system("cls");
 		std::cout << "-----------------Cateories Menu-----------------" << std::endl;
 		std::cout << "\t\t1 - Add category \n\t\t2 - Delete category \n\t\or Press Enter to return to the Main menu \n" << std::endl;
+
 		std::cin.clear();
 		std::cin.ignore(1000, '\n');
 		if (std::cin.peek() == '\n')
 		{
 			break;
 		}
-		CategoriesOption = ValidateInput("choose an option");
+		CategoriesOption = ValidateInput("");
 
 		switch (CategoriesOption)
 		{
@@ -151,8 +163,10 @@ void FSteam::OpenCategoriesMenu()
 			break;
 		}
 
-	} while (CategoriesOption > 1 && CategoriesOption < 2);
+	} while (CategoriesOption < 1 || CategoriesOption > 2);
 }
+
+//-------------------------------------------------------------------------------------------------------------
 
 void FSteam::OpenShowGamesMenu()
 {
@@ -161,6 +175,7 @@ void FSteam::OpenShowGamesMenu()
 	std::cout << "\tCategory name: " << Uncategorized.GetCategoryName() << std::endl;
 	Uncategorized.ShowAllGames();
 
+	std::cout << "Games: " << std::endl;
 	MainHandler.ShowAllCategories();
 
 	std::cout << "\npress ENTER to return to main menu...";
@@ -168,11 +183,14 @@ void FSteam::OpenShowGamesMenu()
 	std::cin.get();
 }
 
+//-------------------------------------------------------------------------------------------------------------
+
 bool FSteam::AddCategoryMenu()
 {
 	if (MainHandler.HasSpace())
 	{
 		system("cls");
+		std::cin.ignore(100, '\n');
 		std::cout << "Enter the name of the category >> ";
 		std::string NewCategoryName;
 		std::getline(std::cin, NewCategoryName);
@@ -181,7 +199,7 @@ bool FSteam::AddCategoryMenu()
 		{
 			std::cout << "Category added!" << std::endl;
 			std::cin.ignore();
-			std::cin.get();
+			//std::cin.get();
 			return true;
 		}
 		else
@@ -201,6 +219,8 @@ bool FSteam::AddCategoryMenu()
 
 	}
 }
+
+//-------------------------------------------------------------------------------------------------------------
 
 void FSteam::DeleteCategoryMenu()
 {
@@ -226,6 +246,8 @@ void FSteam::DeleteCategoryMenu()
 	}
 }
 
+//-------------------------------------------------------------------------------------------------------------
+
 bool FSteam::AddGameMenu(const FGame& InGame)
 {
 	system("cls");
@@ -234,15 +256,20 @@ bool FSteam::AddGameMenu(const FGame& InGame)
 	int CategoryIndex;
 	std::cin >> CategoryIndex;
 
-	if (CategoryIndex >= 0 && CategoryIndex < MainHandler.GetCategoriesAmount() && !std::cin.fail())
+	if (CategoryIndex >= 0 && CategoryIndex < MainHandler.GetCategoriesAmount() && std::cin.good())
 	{
 		std::cout << "Adding game to " << MainHandler.GetCategory(CategoryIndex).GetCategoryName() << std::endl;
 		return MainHandler.AddGameToCategory(CategoryIndex, InGame);
+		std::cout << "Game successfully added!" << std::endl;
+		std::cin.ignore();
+		std::cin.get();
 	}
 	else
 	{
+		std::cout << "Fail to add game!" << std::endl;
 		std::cin.clear();
 		std::cin.ignore(100, '\n');
+		std::cin.get();
 		return false;
 	}
 }

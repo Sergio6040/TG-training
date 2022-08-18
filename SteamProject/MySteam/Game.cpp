@@ -1,4 +1,5 @@
 #include "Game.h"
+#include <iostream>
 
 FGame::FGame()
 {
@@ -51,7 +52,7 @@ const std::string& FGame::GetStudioName() const
 }
 
 //-------------------------------------------------------------------------------------------------------------
-const std::string& FGame::GetReleaseDate() const
+const std::string FGame::GetReleaseDate() const
 {
     return std::to_string(ReleaseDay) + "/" + std::to_string(ReleaseMonth) + "/" + std::to_string(ReleaseYear);
 }
@@ -100,4 +101,11 @@ bool FGame::IsValid() const
 {
     const bool bDateIsValid = (ReleaseDay > 0 && ReleaseDay < 32) && (ReleaseMonth > 0 && ReleaseMonth < 13) && (ReleaseYear > 1958);
     return !GameName.empty() && !StudioName.empty() && bDateIsValid;
+}
+
+//-------------------------------------------------------------------------------------------------------------
+
+void FGame::PrintGame() const
+{
+    std::cout << GameName << "\t" << StudioName << "\t" << GetReleaseDate() << std::endl;
 }
