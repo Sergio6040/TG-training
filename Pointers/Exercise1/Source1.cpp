@@ -32,15 +32,12 @@ int ValidarteInput()
 int main()
 {
 	std::cout << "enter a number: ";
-	//int InputNumber = ValidarteInput();
-	int InputNumber;
-	std::cin >> InputNumber;
+	int InputNumber = ValidarteInput();
 	int* Address = &InputNumber;
 	std::cout << InputNumber << " -> " << Address << std::endl;
 
 	std::cout << "enter another number: ";
-	//InputNumber = ValidarteInput();
-	std::cin >> InputNumber;
+	InputNumber = ValidarteInput();
 	std::cout << InputNumber << " -> " << Address << std::endl;
 
 	std::cout << "enter a number: ";
