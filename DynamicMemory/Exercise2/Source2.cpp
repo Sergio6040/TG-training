@@ -43,7 +43,7 @@ int main()
 	delete HeapInt3;
 
 
-	Print("---------------Quiz---------------");
+	Print("\n---------------Quiz---------------");
 	Print("What can you notice from the memory addresses in the stack vs the memory addresses in the heap ?");
 	Print("R: The stack memory es saved in *Stack* xd each varable is saved in the disc one before another.");
 	Print("while the heap is stored in its special space, and is not saved in a row.");
