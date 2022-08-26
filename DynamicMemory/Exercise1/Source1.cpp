@@ -8,15 +8,14 @@
  * address is 0x7ffd46bfb370
  */
 
-
 #include <iostream>
 
 #define Print(Text) std::cout << Text << std::endl;
 
 int main()
 {
-  int *Number = new int(5);
-  Print("I’ve dynamically allocated an integer.");
-  Print("number " << *Number << " at " << Number);
-  delete Number;
+	int* Number = new int{ 5 };
+	Print("I've dynamically allocated an integer.");
+	Print("number " << *Number << " at " << Number);
+	delete Number;
 }
