@@ -1,6 +1,13 @@
 #include "Student.h"
 #include <string.h>
+
 Student::Student() = default;
+
+Student::~Student()
+{
+	memcpy_s(StudentName, strlen(StudentName) + 1, "", 1);
+	StudentAge = 0;
+}
 
 std::string Student::GetName() const
 {

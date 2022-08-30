@@ -3,13 +3,13 @@
 
 class Student
 {
-	char* StudentName;
-	int StudentAge;
+	char* StudentName{};
+	int StudentAge{};
 
 public:
 
 	Student();
-	//Student( const char* InName, int InAge);
+	~Student();
 
 	std::string GetName() const;
 	int GetAge() const;
