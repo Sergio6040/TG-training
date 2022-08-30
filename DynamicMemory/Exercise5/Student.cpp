@@ -26,7 +26,7 @@ void Student::SetName(const char* InName)
 	if (NameAddress != nullptr)
 	{
 		//Exercise 9 Solution
-		// I store the old location and clean it
+		// I stored the old location and clean it
 		memcpy_s(NameAddress, strlen(NameAddress) + 1, "", strlen(NameAddress) + 1);
 
 	}
