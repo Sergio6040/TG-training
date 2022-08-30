@@ -62,6 +62,7 @@ int main()
 				std::cout << "saving..." << std::endl;
 				Student NewStudent;
 				NewStudent.SetName(NewName);
+				NewStudent.SetName(NewName);
 				NewStudent.SetAge(NewAge);
 				StudentsList[i] = NewStudent;
 			}

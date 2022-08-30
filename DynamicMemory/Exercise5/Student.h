@@ -6,6 +6,8 @@ class Student
 	char* StudentName{};
 	int StudentAge{};
 
+	char* NameAddress;
+
 public:
 
 	Student();
