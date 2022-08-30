@@ -17,8 +17,9 @@ Student* StudentsList;
 
 void ShowStudents(const int ArraySize)
 {
-	std::cout << "\t Students List" << std::endl;
-	std::cout << "Name \tAge" << std::endl;
+	std::cout << "\n\t Students List" << std::endl;
+	std::cout << "------------------------------------------------" << std::endl;
+	std::cout << "Name \t\tAge" << std::endl;
 
 	for (int i = 0; i < ArraySize; i++)
 	{
@@ -42,28 +43,35 @@ int main()
 			system("cls");
 
 			std::cout << "Enter student #" << i << " name" << std::endl;
-			std::string LoopName;
-			std::cin >> LoopName;
+			char NewName[32];
+			std::cin >> NewName;
 
 			std::cout << "Enter student #" << i << " Age" << std::endl;
-			int LoopAge;
-			std::cin >> LoopAge;
+			int NewAge;
+			std::cin >> NewAge;
 
-			if (LoopAge > 0 && std::cin.good())
+			if (NewAge > 0 && std::cin.good())
 			{
-				StudentsList[i] = Student(LoopName, LoopAge);
+				std::cout << "saving..." << std::endl;
+				Student NewStudent;
+				NewStudent.SetName(NewName);
+				NewStudent.SetAge(NewAge);
+				StudentsList[i] = NewStudent;
 			}
 			else
 			{
 				system("cls");
 				std::cout << "Wrong age! add the student again." << std::endl;
 				i--;
-				std::cin.clear();
-				std::cin.ignore();
+				std::cin.ignore(100, '\n');
 				std::cin.get();
 			}
+			std::cin.clear();
+			std::cin.ignore();
 		}
 		ShowStudents(ArraySize);
+
+		std::cout << "\nmemcpy_s is the most efficient, easy and readable way to copy an array, instead of using an for loop" << std::endl;
 	}
 
 	delete[] StudentsList;

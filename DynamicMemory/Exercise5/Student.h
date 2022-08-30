@@ -3,15 +3,18 @@
 
 class Student
 {
-	char StudentName[5];
+	char* StudentName;
 	int StudentAge;
 
 public:
 
 	Student();
-	Student( std::string& InName, int InAge);
+	//Student( const char* InName, int InAge);
 
 	std::string GetName() const;
 	int GetAge() const;
+
+	void SetName(const char* InName);
+	void SetAge(const int InAge);
 };
 

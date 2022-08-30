@@ -1,8 +1,8 @@
 #include "Student.h"
-
+#include <string.h>
 Student::Student() = default;
 
-
+/*
 Student::Student(std::string& InName, int InAge)
 {
 	if (InName.empty())
@@ -17,7 +17,7 @@ Student::Student(std::string& InName, int InAge)
 
 	StudentAge = InAge;
 
-}
+}*/
 
 std::string Student::GetName() const
 {
@@ -27,4 +27,19 @@ std::string Student::GetName() const
 int Student::GetAge() const
 {
 	return StudentAge;
+}
+
+void Student::SetName(const char* InName)
+{
+
+	size_t Length = strlen(InName);
+	StudentName = new char[Length];
+
+	memcpy_s(StudentName, Length, InName, Length);
+
+}
+
+void Student::SetAge(const int InAge)
+{
+	StudentAge = InAge;
 }
