@@ -35,7 +35,7 @@ void Student::SetName(const char* InName)
 	size_t Length = strlen(InName);
 	StudentName = new char[Length];
 
-	memcpy_s(StudentName, Length, InName, Length);
+	memcpy_s(StudentName, Length + 1, InName, Length + 1);
 
 }
 
