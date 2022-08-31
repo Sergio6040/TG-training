@@ -1,5 +1,7 @@
 #pragma once
-#include "ClassA.h"
+//#include "ClassA.h"
+
+class ClassA; //forward declaration
 
 class ClassB
 {
