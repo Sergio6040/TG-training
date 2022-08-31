@@ -5,7 +5,7 @@ class ClassA; //forward declaration
 
 class ClassB
 {
-	ClassA* PointerA;
+	ClassA InstanceA;
 
 };
 

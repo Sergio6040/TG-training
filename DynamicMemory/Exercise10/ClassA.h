@@ -3,7 +3,7 @@
 
 class ClassA
 {
-	ClassB* PointerB;
+	ClassB InstanceB;
 
 };
 
