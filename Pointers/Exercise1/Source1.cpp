@@ -10,7 +10,7 @@
 
 #include <iostream>
 
-int ValidarteInput()
+int ValidateInput()
 {
 	int InputNumber;
 	while (true)
@@ -32,17 +32,17 @@ int ValidarteInput()
 int main()
 {
 	std::cout << "enter a number: ";
-	int InputNumber = ValidarteInput();
-	int* Address = &InputNumber;
-	std::cout << InputNumber << " -> " << Address << std::endl;
+	int InputNumber = ValidateInput();
+	int* InputPtr = &InputNumber;
+	std::cout << InputNumber << " -> " << InputPtr << std::endl;
 
 	std::cout << "enter another number: ";
-	InputNumber = ValidarteInput();
-	std::cout << InputNumber << " -> " << Address << std::endl;
+	InputNumber = ValidateInput();
+	std::cout << InputNumber << " -> " << InputPtr << std::endl;
 
 	std::cout << "enter a number: ";
-	int SecondInputNumber = ValidarteInput();
-	Address = &SecondInputNumber;
-	std::cout << SecondInputNumber << " -> " << Address << std::endl;
+	int SecondInputNumber = ValidateInput();
+	InputPtr = &SecondInputNumber;
+	std::cout << SecondInputNumber << " -> " << InputPtr << std::endl;
 }
 

@@ -14,11 +14,11 @@ int main()
 	std::cout << "enter a number: ";
 	int InputNumber;
 	std::cin >> InputNumber;
-	int* Address = &InputNumber;
-	std::cout << InputNumber << " -> " << Address << std::endl;
+	int* InputNumberPtr = &InputNumber;
+	std::cout << InputNumber << " -> " << InputNumberPtr << std::endl;
 
 
 	std::cout << "enter another number: ";
-	std::cin >> *Address;
-	std::cout << InputNumber << " -> " << Address << std::endl;
+	std::cin >> *InputNumberPtr;
+	std::cout << InputNumber << " -> " << InputNumberPtr << std::endl;
 }

@@ -24,8 +24,8 @@ int main()
 	*FirstPointer = 65;
 	*FirstPointer += 1;
 
-	*FirstPointer = MyNumber + 32;
-	*FirstPointer += 1;
+	*SecondPointer = MyNumber + 32;
+	*SecondPointer += 1;
 
 	std::cout << "The value of my variable after the pointer stuff I did is: " << MyNumber << std::endl;
 

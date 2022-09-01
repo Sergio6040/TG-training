@@ -30,7 +30,6 @@ void ShowStudents(const int ArraySize)
 
 int main()
 {
-
 	Student* TestStudent = new Student();
 	TestStudent->SetName("Joe");
 	TestStudent->SetAge(8);
@@ -62,7 +61,7 @@ int main()
 				std::cout << "saving..." << std::endl;
 				Student NewStudent;
 				NewStudent.SetName(NewName);
-				NewStudent.SetName(NewName);
+				//NewStudent.SetName(NewName);
 				NewStudent.SetAge(NewAge);
 				StudentsList[i] = NewStudent;
 			}
@@ -86,8 +85,6 @@ int main()
 	//Quizz #7
 	std::cout << "\nWhy deleting the student object does not delete the name’s char array?" << std::endl;
 	std::cout << "R: What happened when using the delete keyword, is that the memory space where the object was saved is now free, but its variable values are still there as garbage, they are meant to be replaced by the new entering values :)" << std::endl;
-
-
 
 	delete[] StudentsList;
 }

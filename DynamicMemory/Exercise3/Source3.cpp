@@ -28,7 +28,7 @@
 
 void MemoryLeak1()
 {
-	int* IntHeap1 = new int{ 8 };
+	int* IntHeap1 = new int{8};
 }
 
 void MemoryLeak2(int* IntPtr)

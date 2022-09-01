@@ -26,9 +26,9 @@ int main()
 
 	int NumberArray[10];
 	int ArrayLength = sizeof(NumberArray) / sizeof(sizeof(NumberArray) / sizeof(*NumberArray));
-	int* Address = NumberArray;
+	int* ArrayPtr = NumberArray;
 
-	for (int* i = Address; i != (Address + ArrayLength); i++)
+	for (int* i = ArrayPtr; i != (ArrayPtr + ArrayLength); i++)
 	{
 		int Random{rand() % 50};
 		std::cout << Random << ", ";
@@ -37,7 +37,7 @@ int main()
 	Print("");
 
 	int Sum{0};
-	for (int* i = Address + ArrayLength - 1; i != (Address - 1); i--)
+	for (int* i = ArrayPtr + ArrayLength - 1; i != (ArrayPtr - 1); i--)
 	{
 		Sum += *i;
 	}

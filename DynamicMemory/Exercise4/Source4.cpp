@@ -24,7 +24,7 @@ int main()
 
 	delete IntHeap;
 
-	if (IntPointer != nullptr)
+	if (IntPointer)
 	{
 		std::cout << "The pointer is valid" << std::endl;
 		std::cout << "value: " << IntPointer << " " << *IntPointer << std::endl;

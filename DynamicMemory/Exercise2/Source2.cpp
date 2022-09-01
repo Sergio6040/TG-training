@@ -30,9 +30,9 @@ int main()
 
 	//-----------------------heap--------------------------
 	Print("--------------Heap variables--------------");
-	int* HeapInt1 = new int{ 3 };
-	int* HeapInt2 = new int{ 6 };
-	int* HeapInt3 = new int{ 18 };
+	int* HeapInt1 = new int{3};
+	int* HeapInt2 = new int{6};
+	int* HeapInt3 = new int{18};
 
 	Print("value: " << *HeapInt1 << " at: " << HeapInt1);
 	Print("value: " << *HeapInt2 << " at: " << HeapInt2);
@@ -45,8 +45,8 @@ int main()
 
 	Print("\n---------------Quiz---------------");
 	Print("What can you notice from the memory addresses in the stack vs the memory addresses in the heap ?");
-	Print("R: The stack memory es saved in *Stack* xd each varable is saved in the disc one before another.");
-	Print("while the heap is stored in its special space, and is not saved in a row.");
+	Print("R: The stack memory is saved in *Stack* xd each varable is saved in the disc one before another, also this part of the memory is automatically managed by the computer and is cheaper to use for the machine.");
+	Print("\nWhile the heap is stored in its special space, and is not saved in a row. Also heap allows dynamic memory, because his size can be altered");
 
 
 }

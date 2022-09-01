@@ -25,20 +25,20 @@ int main()
 	std::cout << "Please enter a value for variable B: ";
 	std::cin >> SecondNumber;
 
-	int* Address = &FirstNumber;
+	int* InputPtr = &FirstNumber;
 
 	std::cout << "\nUsing pointer variable P, I've determined that :" << std::endl;
-	std::cout << "The value of A is: " << *Address << std::endl;
-	std::cout << "at: " << Address << std::endl;
-	std::cout << "The value of P is: " << Address << std::endl;
-	std::cout << "at: " << &Address << std::endl;
+	std::cout << "The value of A is: " << *InputPtr << std::endl;
+	std::cout << "at: " << InputPtr << std::endl;
+	std::cout << "The value of P is: " << InputPtr << std::endl;
+	std::cout << "at: " << &InputPtr << std::endl;
 
-	Address = &SecondNumber;
+	InputPtr = &SecondNumber;
 
 	std::cout << "\nUsing the same pointer variable P, I've also determined that :" << std::endl;
-	std::cout << "The value of B is: " << *Address << std::endl;
-	std::cout << "at: " << Address << std::endl;
-	std::cout << "The value of P is: " << Address << std::endl;
-	std::cout << "at: " << &Address << std::endl;
+	std::cout << "The value of B is: " << *InputPtr << std::endl;
+	std::cout << "at: " << InputPtr << std::endl;
+	std::cout << "The value of P is: " << InputPtr << std::endl;
+	std::cout << "at: " << &InputPtr << std::endl;
 
 }

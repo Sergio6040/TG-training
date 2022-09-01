@@ -5,7 +5,7 @@ Student::Student() = default;
 
 Student::~Student()
 {
-	memcpy_s(StudentName, strlen(StudentName) + 1, "", strlen(StudentName) + 1);
+	delete StudentName;
 	StudentAge = 0;
 }
 
@@ -23,12 +23,10 @@ void Student::SetName(const char* InName)
 {
 
 	size_t Length = strlen(InName);
-	if (NameAddress != nullptr)
+	if (NameAddress)
 	{
-		//Exercise 9 Solution
-		// I stored the old location and clean it
-		memcpy_s(NameAddress, strlen(NameAddress) + 1, "", strlen(NameAddress) + 1);
-
+		delete StudentName;
+		StudentName = nullptr;
 	}
 
 	StudentName = new char[Length];

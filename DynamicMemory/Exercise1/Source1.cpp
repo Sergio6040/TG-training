@@ -14,7 +14,7 @@
 
 int main()
 {
-	int* Number = new int{ 5 };
+	int* Number = new int{5};
 	Print("I've dynamically allocated an integer.");
 	Print("number " << *Number << " at " << Number);
 	delete Number;

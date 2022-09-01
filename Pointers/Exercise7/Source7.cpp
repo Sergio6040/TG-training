@@ -20,7 +20,7 @@
 
 void IncrementNumber(int* NumberPtr)
 {
-	if (NumberPtr != nullptr)
+	if (NumberPtr)
 	{
 		*NumberPtr += 3;
 	}
@@ -32,9 +32,9 @@ int main()
 
 	int* MyPointer = nullptr;
 
-	//MyPointer = &Number;
+	MyPointer = &Number;
 
-	Print("After: " << Number);
+	Print("Before: " << Number);
 
 	IncrementNumber(MyPointer);
 
