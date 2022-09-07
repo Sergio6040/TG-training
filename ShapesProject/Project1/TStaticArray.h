@@ -80,5 +80,19 @@ public:
 
 //--------------------------------------------------------------
 
+	bool Swap(T& OtherArray)
+	{
+		int OtherSize = sizeof(OtherArray) / sizeof(OtherArray[0]);
+
+		if (OtherSize > 0)
+		{
+			T* AuxiliarArray = new 
+
+		}
+
+	}
+
+
+
 
 };
