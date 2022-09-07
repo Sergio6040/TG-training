@@ -1,5 +1,7 @@
 #pragma once
 
+#include<cstring>
+
 template <typename T, int N> 
 class TStaticArray
 {
@@ -49,7 +51,7 @@ public:
 		return SpecialArray;
 	}
 
-	const T* GetData() const
+	T* GetData()
 	{
 		return SpecialArray;
 	}
@@ -84,15 +86,15 @@ public:
 	{
 		int OtherSize = sizeof(OtherArray) / sizeof(OtherArray[0]);
 
-		if (OtherSize > 0)
+		if (OtherSize == N)
 		{
-			T* AuxiliarArray = new 
+			T* AuxiliarArray = new T[N];
+			memcpy(AuxiliarArray, SpecialArray, N);
+			memcpy(SpecialArray, OtherArray, N);
+			memcpy(OtherArray, AuxiliarArray, N);
 
+			delete[] OtherArray;
 		}
-
 	}
-
-
-
 
 };

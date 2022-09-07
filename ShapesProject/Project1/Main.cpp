@@ -2,12 +2,41 @@
 #include "FShape.h"
 #include "FCircle.h"
 #include "FSquare.h"
+#include "TStaticArray.h"
 
 #include "ValidateInput.h"
 
 #define Print(Text) std::cout << Text << std::endl;
 
+FCircle* GetCircle()
+{
+	float Radius = GetValidateInput("Enter the radius: ");
+	FCircle* NewCircle = new FCircle(Radius);
 
+	return NewCircle;
+}
+
+FSquare* GetSquare()
+{
+	float Size = GetValidateInput("Enter the Size of the edges: ");
+	FSquare* NewSquare = new FSquare(Size);
+	return NewSquare;
+}
+
+template<typename T>
+void PrintArray(T& InArray, int ArraySize)
+{
+	for (int i = 0; i < ArraySize; i++)
+	{
+		float LoopArea = InArray[i]->GetArea();
+		float LoopPerimeter = InArray[i]->GetPerimeter();
+
+		Print("Shape " << i << " area: " << LoopArea << " perimeter: " << LoopPerimeter);
+	}
+
+	std::cin.ignore();
+	std::cin.get();
+}
 
 
 void AskForShapesBuiltIn()
@@ -20,42 +49,50 @@ void AskForShapesBuiltIn()
 
 	for (int i = 0; i < ShapesNumber; i++) 
 	{
-		int ShapeChoice = GetValidateInput(1, 2, i + "\n 1 - Cirle \n 2 - Scuare \n Shape: ");
+		int ShapeChoice = GetValidateInput(1, 2, i + "\n 1 - Cirle \n 2 - Square \n Shape: ");
 		system("cls");
 		if (ShapeChoice == 1)
 		{
-			float Radius = GetValidateInput("Enter the radius: ");
-			FCircle* Circle = new FCircle(Radius);
-
+			FCircle* Circle = GetCircle();
 			BuiltInArray[i] = Circle;
 		}
 		else if (ShapeChoice == 2)
 		{
-			float Size = GetValidateInput("Enter the Size of the edges: ");
-			FSquare* Square = new FSquare(Size);
-
+			
+			FSquare* Square = GetSquare();
 			BuiltInArray[i] = Square;
 		}
 	}
 
 	Print("----------------Saved Shapes----------------");
 
-	for (int i = 0; i < ShapesNumber; i++)
-	{
-		float LoopArea = BuiltInArray[i]->GetArea();
-		float LoopPerimeter = BuiltInArray[i]->GetPerimeter();
-
-		Print("Shape " << i << " area: " << LoopArea << " perimeter: " << LoopPerimeter);
-	}
-
-	std::cin.ignore();
-	std::cin.get();
+	PrintArray(BuiltInArray, ShapesNumber);
 
 }
 
 void AskForShapesStatic()
 {
+	TStaticArray<FShape*, 5> StaticArray;
 
+	Print("Specify what figures you want.");
+	for (int i = 0; i < 5; i++)
+	{
+		int ShapeChoice = GetValidateInput(1, 2, i + "\n 1 - Cirle \n 2 - Square \n Shape: ");
+		system("cls");
+		if (ShapeChoice == 1)
+		{
+			FCircle* Circle = GetCircle();
+			StaticArray[i] = Circle;
+		}
+		else if (ShapeChoice == 2)
+		{
+
+			FSquare* Square = GetSquare();
+			StaticArray[i] = Square;
+		}
+	}
+
+	PrintArray(StaticArray, 5);
 }
 
 void AskForShapesDynamic()
