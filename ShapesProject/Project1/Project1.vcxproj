@@ -130,6 +130,7 @@
     <ClInclude Include="FCircle.h" />
     <ClInclude Include="FShape.h" />
     <ClInclude Include="FSquare.h" />
+    <ClInclude Include="TDynamicArray.h" />
     <ClInclude Include="TStaticArray.h" />
     <ClInclude Include="ValidateInput.h" />
   </ItemGroup>

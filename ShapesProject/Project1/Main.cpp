@@ -8,6 +8,8 @@
 
 #define Print(Text) std::cout << Text << std::endl;
 
+//------------------------------------------------------------------------------------------
+
 FCircle* GetCircle()
 {
 	float Radius = GetValidateInput("Enter the radius: ");
@@ -16,12 +18,16 @@ FCircle* GetCircle()
 	return NewCircle;
 }
 
+//------------------------------------------------------------------------------------------
+
 FSquare* GetSquare()
 {
 	float Size = GetValidateInput("Enter the Size of the edges: ");
 	FSquare* NewSquare = new FSquare(Size);
 	return NewSquare;
 }
+
+//------------------------------------------------------------------------------------------
 
 template<typename T>
 void PrintArray(T& InArray, int ArraySize)
@@ -38,6 +44,7 @@ void PrintArray(T& InArray, int ArraySize)
 	std::cin.get();
 }
 
+//------------------------------------------------------------------------------------------
 
 void AskForShapesBuiltIn()
 {
@@ -70,6 +77,8 @@ void AskForShapesBuiltIn()
 
 }
 
+//------------------------------------------------------------------------------------------
+
 void AskForShapesStatic()
 {
 	TStaticArray<FShape*, 5> StaticArray;
@@ -95,10 +104,14 @@ void AskForShapesStatic()
 	PrintArray(StaticArray, 5);
 }
 
+//------------------------------------------------------------------------------------------
+
 void AskForShapesDynamic()
 {
 
 }
+
+//------------------------------------------------------------------------------------------
 
 int main()
 {
