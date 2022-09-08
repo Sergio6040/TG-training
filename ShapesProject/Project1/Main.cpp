@@ -30,7 +30,7 @@ FSquare* GetSquare()
 //------------------------------------------------------------------------------------------
 
 template<typename T>
-void PrintArray(T& InArray, int ArraySize)
+void PrintArray(const T& InArray, int ArraySize)
 {
 	for (int i = 0; i < ArraySize; i++)
 	{
@@ -43,6 +43,17 @@ void PrintArray(T& InArray, int ArraySize)
 	std::cin.ignore();
 	std::cin.get();
 }
+
+//------------------------------------------------------------------------------------------
+
+//template<typename T>
+//void ClearArray(const T& InArray, int ArraySize)
+//{
+//	for (int i = 0; i < ArraySize; i++)
+//	{
+//		delete InArray[i];
+//	}
+//}
 
 //------------------------------------------------------------------------------------------
 

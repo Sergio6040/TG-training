@@ -93,7 +93,9 @@ public:
 			memcpy(OtherArray, AuxiliarArray, N);
 
 			delete[] OtherArray;
+			return true;
 		}
+		return false;
 	}
 
 };
