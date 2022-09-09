@@ -170,7 +170,7 @@ public:
 
 	//------------------------------------------------------------------------------------------
 
-	void Insert(const T& NewItem, int Position)
+	void Insert(const T& NewItem, const int Position)
 	{
 		CheckBounds();
 
@@ -192,7 +192,7 @@ public:
 
 	//------------------------------------------------------------------------------------------
 
-	void Erase(int Position)
+	void Erase(const int Position)
 	{
 		CheckBounds();
 
@@ -277,6 +277,44 @@ public:
 		{
 			Reserve();
 		}
+	}
+
+	void AddUnique(const T& NewElement)
+	{
+		for (int i = 0; i < Size; i++)
+		{
+			if (DynamicArray[i] == NewElement)
+			{
+				return;
+			}
+		}
+
+		PushBack(NewElement);
+	}
+
+	bool Contains(const T& InObject)
+	{
+		for (T LoopObject: DynamicArray)
+		{
+			if (LoopObject == InObject)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	int GetIndex(const T& InObject)
+	{
+		for (int i = 0; i < Size; i++)
+		{
+			if (DynamicArray[i] == InObject)
+			{
+				return i;
+			}
+		}
+
+		return 0;
 	}
 
 };
