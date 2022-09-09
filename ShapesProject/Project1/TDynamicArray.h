@@ -16,6 +16,8 @@ public:
 		Capacity = 3;
 	}
 
+	//------------------------------------------------------------------------------------------
+
 	TDynamicArray(int InCapacity)
 	{
 		DynamicArray = new T[InCapacity];
@@ -23,14 +25,10 @@ public:
 		Capacity = InCapacity;
 	}
 
+	//------------------------------------------------------------------------------------------
+
 	TDynamicArray(const TDynamicArray& Object) : Size{Object.Size}, Capacity{Object.Capacity}
 	{
-		/*DynamicArray = new T[Object.Capacity];
-		for (int i = 0; i < size; i++)
-		{
-			DynamicArray[i] = Object.DynamicArray[i];
-		}*/
-
 		Append(Object);
 	}
 
@@ -38,6 +36,10 @@ public:
 
 	~TDynamicArray()
 	{
+		for (int i = 0; i < Size; i++)
+		{
+			delete DynamicArray[i];
+		}
 		delete[] DynamicArray;
 	}
 
@@ -215,7 +217,7 @@ public:
 
 	//------------------------------------------------------------------------------------------
 
-	bool Swap(T& OtherArray)
+	bool Swap(TDynamicArray& OtherArray)
 	{
 		int OtherSize = sizeof(OtherArray) / sizeof(OtherArray[0]);
 
@@ -234,7 +236,7 @@ public:
 
 	//------------------------------------------------------------------------------------------
 
-	void Append(const T& OtherArray)
+	void Append(const TDynamicArray& OtherArray)
 	{
 		int OtherArraySize = sizeof(OtherArray) / sizeof(T);
 		int NewSize = Size + OtherArraySize;
@@ -277,17 +279,17 @@ public:
 		}
 	}
 
-	void AddUnique(const T& NewElement)
+	bool AddUnique(const T& NewElement)
 	{
 		for (int i = 0; i < Size; i++)
 		{
 			if (DynamicArray[i] == NewElement)
 			{
-				return;
+				return false;
 			}
 		}
-
 		PushBack(NewElement);
+		return true;
 	}
 
 	bool Contains(const T& InObject) const

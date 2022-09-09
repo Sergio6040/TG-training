@@ -9,6 +9,15 @@ class TStaticArray
 
 public:
 
+	~TStaticArray()
+	{
+		for (int i = 0; i < N; i++)
+		{
+			delete SpecialArray[i];
+		}
+		delete[] SpecialArray;
+	}
+
 	const T& operator[] (const int Index) const
 	{
 		return SpecialArray[Index];
@@ -81,7 +90,7 @@ public:
 
 //------------------------------------------------------------------------------------------
 
-	bool Swap(T& OtherArray)
+	bool Swap(TStaticArray& OtherArray)
 	{
 		int OtherSize = sizeof(OtherArray) / sizeof(OtherArray[0]);
 

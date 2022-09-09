@@ -49,17 +49,6 @@ void PrintArray(const T& InArray, int InSize)
 
 //------------------------------------------------------------------------------------------
 
-//template<typename T>
-//void ClearArray(const T& InArray, int ArraySize)
-//{
-//	for (int i = 0; i < ArraySize; i++)
-//	{
-//		delete InArray[i];
-//	}
-//}
-
-//------------------------------------------------------------------------------------------
-
 FShape* AskForShapes()
 {
 	system("cls");
@@ -93,6 +82,13 @@ void AskForShapesBuiltIn()
 
 	PrintArray(BuiltInArray, ShapesNumber);
 
+	for (int i = 0; i < ShapesNumber; i++)
+	{
+		delete BuiltInArray[i];
+	}
+
+	delete[] BuiltInArray;
+
 }
 
 //------------------------------------------------------------------------------------------
@@ -114,38 +110,24 @@ void AskForShapesStatic()
 
 void AskForShapesDynamic()
 {
-	system("cls");
+	
+
 	TDynamicArray<FShape*> DynamicArray;
 	while (true)
 	{
-		int UserChoice = GetValidateInput(1, 2, "\t1 - Show Figures \n\t2 - Add Shape \n\t3 - Return to main menu");
-
+		system("cls");
+		int UserChoice = GetValidateInput(1, 3, "\t1 - Show Figures \n\t2 - Add Shape \n\t3 - Return to main menu");
 		if (UserChoice == 1)
 		{
 			PrintArray(DynamicArray, DynamicArray.GetSize());
 		}
 		else if(UserChoice == 2)
 		{
-			/*int ShapeChoice = GetValidateInput(1, 2, DynamicArray.GetSize() + "\n 1 - Cirle \n 2 - Square \n Shape: ");
-			system("cls");
-			if (ShapeChoice == 1)
-			{
-				FCircle* Circle = GetCircle();
-				DynamicArray.PushBack(Circle);
-			}
-			else if (ShapeChoice == 2)
-			{
-
-				FSquare* Square = GetSquare();
-				DynamicArray.PushBack(Square);
-
-			}*/
 			DynamicArray.PushBack(AskForShapes());
-
 		}
 		else
 		{
-			break;
+			return;
 		}
 	}
 
@@ -180,11 +162,10 @@ int main()
 		case 4:
 			return 0;
 
-		default:
-			std::cin.clear();
-			std::cin.ignore(100, '\n');
-			break;
 		}
+
+		std::cin.clear();
+		std::cin.ignore(100, '\n');
 	}
 }
 
