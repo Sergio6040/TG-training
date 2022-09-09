@@ -3,6 +3,7 @@
 #include "FCircle.h"
 #include "FSquare.h"
 #include "TStaticArray.h"
+#include "TDynamicArray.h"
 
 #include "ValidateInput.h"
 
@@ -32,6 +33,8 @@ FSquare* GetSquare()
 template<typename T>
 void PrintArray(const T& InArray, int InSize)
 {
+	system("cls");
+	Print("--------------------------Array Content--------------------------");
 	for (int i = 0; i < InSize; i++)
 	{
 		float LoopArea = InArray[i]->GetArea();
@@ -57,6 +60,22 @@ void PrintArray(const T& InArray, int InSize)
 
 //------------------------------------------------------------------------------------------
 
+FShape* AskForShapes()
+{
+	system("cls");
+	int ShapeChoice = GetValidateInput(1, 2, "\n 1 - Cirle \n 2 - Square \n Shape: ");
+	if (ShapeChoice == 1)
+	{
+		return GetCircle();
+	}
+	else if (ShapeChoice == 2)
+	{
+		return GetSquare();
+	}
+}
+
+//------------------------------------------------------------------------------------------
+
 void AskForShapesBuiltIn()
 {
 	const int ShapesNumber = GetValidateInput("How many figures do you want to create?");;
@@ -67,19 +86,7 @@ void AskForShapesBuiltIn()
 
 	for (int i = 0; i < ShapesNumber; i++) 
 	{
-		int ShapeChoice = GetValidateInput(1, 2, i + "\n 1 - Cirle \n 2 - Square \n Shape: ");
-		system("cls");
-		if (ShapeChoice == 1)
-		{
-			FCircle* Circle = GetCircle();
-			BuiltInArray[i] = Circle;
-		}
-		else if (ShapeChoice == 2)
-		{
-			
-			FSquare* Square = GetSquare();
-			BuiltInArray[i] = Square;
-		}
+		BuiltInArray[i] = AskForShapes();
 	}
 
 	Print("----------------Saved Shapes----------------");
@@ -97,19 +104,7 @@ void AskForShapesStatic()
 	Print("Specify what figures you want.");
 	for (int i = 0; i < 5; i++)
 	{
-		int ShapeChoice = GetValidateInput(1, 2, i + "\n 1 - Cirle \n 2 - Square \n Shape: ");
-		system("cls");
-		if (ShapeChoice == 1)
-		{
-			FCircle* Circle = GetCircle();
-			StaticArray[i] = Circle;
-		}
-		else if (ShapeChoice == 2)
-		{
-
-			FSquare* Square = GetSquare();
-			StaticArray[i] = Square;
-		}
+		StaticArray[i] = AskForShapes();
 	}
 
 	PrintArray(StaticArray, 5);
@@ -119,6 +114,40 @@ void AskForShapesStatic()
 
 void AskForShapesDynamic()
 {
+	system("cls");
+	TDynamicArray<FShape*> DynamicArray;
+	while (true)
+	{
+		int UserChoice = GetValidateInput(1, 2, "\t1 - Show Figures \n\t2 - Add Shape \n\t3 - Return to main menu");
+
+		if (UserChoice == 1)
+		{
+			PrintArray(DynamicArray, DynamicArray.GetSize());
+		}
+		else if(UserChoice == 2)
+		{
+			/*int ShapeChoice = GetValidateInput(1, 2, DynamicArray.GetSize() + "\n 1 - Cirle \n 2 - Square \n Shape: ");
+			system("cls");
+			if (ShapeChoice == 1)
+			{
+				FCircle* Circle = GetCircle();
+				DynamicArray.PushBack(Circle);
+			}
+			else if (ShapeChoice == 2)
+			{
+
+				FSquare* Square = GetSquare();
+				DynamicArray.PushBack(Square);
+
+			}*/
+			DynamicArray.PushBack(AskForShapes());
+
+		}
+		else
+		{
+			break;
+		}
+	}
 
 }
 

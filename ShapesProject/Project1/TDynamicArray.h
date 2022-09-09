@@ -46,7 +46,6 @@ public:
 
 	const T& operator[] (const int Index) const
 	{
-		CheckBounds();
 		return DynamicArray[Index];
 	}
 
@@ -126,7 +125,7 @@ public:
 
 	//------------------------------------------------------------------------------------------
 
-	void Reserve() const
+	void Reserve()
 	{
 		Resize(Capacity * 2);
 	}
@@ -155,9 +154,8 @@ public:
 	void PushBack(const T& NewItem)
 	{
 		CheckBounds();
-
-		Size++;
 		DynamicArray[Size] = NewItem;
+		Size++;
 	}
 
 	//------------------------------------------------------------------------------------------
@@ -255,7 +253,7 @@ public:
 
 	//------------------------------------------------------------------------------------------
 
-	void Resize(int NewCapacity)
+	void Resize(const int NewCapacity)
 	{
 		T* NewDynamicArray = new T[NewCapacity];
 
@@ -292,7 +290,7 @@ public:
 		PushBack(NewElement);
 	}
 
-	bool Contains(const T& InObject)
+	bool Contains(const T& InObject) const
 	{
 		for (T LoopObject: DynamicArray)
 		{
@@ -304,7 +302,7 @@ public:
 		return false;
 	}
 
-	int GetIndex(const T& InObject)
+	int GetIndex(const T& InObject) const
 	{
 		for (int i = 0; i < Size; i++)
 		{
