@@ -10,6 +10,8 @@ public:
 
 	FCircle(float InRadius) : Radius{ InRadius } {};
 
+	FCircle(FCircle& Object) : Radius(Object.Radius) {};
+
 	float GetArea() const override;
 
 	float GetPerimeter() const override;

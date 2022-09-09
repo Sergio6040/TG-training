@@ -4,18 +4,34 @@ template<typename T>
 class TDynamicArray
 {
 	T* DynamicArray;
-	int ArraySize;
-	int ArrayCapacity;
+	int Size;
+	int Capacity;
 
 public:
 
-	//TDynamicArray() = default;
+	TDynamicArray()
+	{
+		DynamicArray = new T[3];
+		Size = 0;
+		Capacity = 3;
+	}
 
 	TDynamicArray(int InCapacity)
 	{
 		DynamicArray = new T[InCapacity];
-		ArraySize = 0;
-		ArrayCapacity = InCapacity;
+		Size = 0;
+		Capacity = InCapacity;
+	}
+
+	TDynamicArray(const TDynamicArray& Object) : Size{Object.Size}, Capacity{Object.Capacity}
+	{
+		/*DynamicArray = new T[Object.Capacity];
+		for (int i = 0; i < size; i++)
+		{
+			DynamicArray[i] = Object.DynamicArray[i];
+		}*/
+
+		Append(Object);
 	}
 
 	//------------------------------------------------------------------------------------------
@@ -36,11 +52,18 @@ public:
 
 	//------------------------------------------------------------------------------------------
 
-
 	T& operator[] (const int Index)
 	{
 		CheckBounds();
 		return DynamicArray[Index];
+	}
+
+	//------------------------------------------------------------------------------------------
+
+	T& operator= (const T& OtherArray)
+	{
+		Clear();
+		Append(OtherArray);
 	}
 
 	//------------------------------------------------------------------------------------------
@@ -59,12 +82,12 @@ public:
 
 	const T& Back() const
 	{
-		return DynamicArray[ArraySize];
+		return DynamicArray[Size];
 	}
 
 	T& Back()
 	{
-		return DynamicArray[ArraySize];
+		return DynamicArray[Size];
 	}
 
 	//------------------------------------------------------------------------------------------
@@ -83,48 +106,48 @@ public:
 
 	bool IsEmpty() const
 	{
-		return ArraySize == 0;
-		
+		return Size == 0;
+
 	}
 
 	//------------------------------------------------------------------------------------------
 
 	int GetSize() const
 	{
-		return ArraySize;
+		return Size;
 	}
 
 	//------------------------------------------------------------------------------------------
 
 	int GetCapacity() const
 	{
-		return ArrayCapacity;
+		return Capacity;
 	}
 
 	//------------------------------------------------------------------------------------------
 
 	void Reserve() const
 	{
-		Resize(ArrayCapacity * 2);
+		Resize(Capacity * 2);
 	}
 
 	//------------------------------------------------------------------------------------------
 
 	void ShrinkToFit()
 	{
-		ArrayCapacity = ArraySize;
-		Resize(ArrayCapacity);
+		Capacity = Size;
+		Resize(Capacity);
 	}
 
 	//------------------------------------------------------------------------------------------
 
 	void Clear()
 	{
-		for (int i = 0; i < ArraySize; i++)
+		for (int i = 0; i < Size; i++)
 		{
 			delete DynamicArray[i];
 		}
-		ArraySize = 0;
+		Size = 0;
 	}
 
 	//------------------------------------------------------------------------------------------
@@ -133,16 +156,16 @@ public:
 	{
 		CheckBounds();
 
-		ArraySize++;
-		DynamicArray[ArraySize] = NewItem;
+		Size++;
+		DynamicArray[Size] = NewItem;
 	}
 
 	//------------------------------------------------------------------------------------------
 
 	void PopBack()
 	{
-		delete DynamicArray[ArraySize];
-		ArraySize--;
+		delete DynamicArray[Size];
+		Size--;
 	}
 
 	//------------------------------------------------------------------------------------------
@@ -151,13 +174,13 @@ public:
 	{
 		CheckBounds();
 
-		ArraySize++;
+		Size++;
 
 		//Auxiliar variables
-		T AuxiliarA{DynamicArray[Position]};
-		T AuxiliarB{DynamicArray[Position]};
+		T AuxiliarA{ DynamicArray[Position] };
+		T AuxiliarB{ DynamicArray[Position] };
 
-		for (int i = Position; i < ArraySize - 1; i++)
+		for (int i = Position; i < Size - 1; i++)
 		{
 			//moves the values +1 position
 			AuxiliarA = DynamicArray[i + 1];
@@ -173,28 +196,20 @@ public:
 	{
 		CheckBounds();
 
-		for (int i = Position; i < ArraySize - 1; i++)
+		for (int i = Position; i < Size - 1; i++)
 		{
 			DynamicArray[i] = DynamicArray[i + 1];
 		}
 
-		delete DynamicArray[ArraySize];
-		ArraySize--;
-	}
-
-	//------------------------------------------------------------------------------------------
-	
-	void ShrinkToFit(int Value)
-	{
-		ArrayCapacity = ArraySize;
-		Resize(ArrayCapacity);
+		delete DynamicArray[Size];
+		Size--;
 	}
 
 	//------------------------------------------------------------------------------------------
 
 	void Fill(const T& Value)
 	{
-		for (int i = 0; i < ArraySize; i++)
+		for (int i = 0; i < Size; i++)
 		{
 			DynamicArray[i] = Value;
 		}
@@ -206,12 +221,12 @@ public:
 	{
 		int OtherSize = sizeof(OtherArray) / sizeof(OtherArray[0]);
 
-		if (OtherSize == ArraySize)
+		if (OtherSize == Size)
 		{
-			T* AuxiliarArray = new T[ArraySize];
-			memcpy(AuxiliarArray, DynamicArray, ArraySize);
-			memcpy(DynamicArray, OtherArray, ArraySize);
-			memcpy(OtherArray, AuxiliarArray, ArraySize);
+			T* AuxiliarArray = new T[Size];
+			memcpy(AuxiliarArray, DynamicArray, Size);
+			memcpy(DynamicArray, OtherArray, Size);
+			memcpy(OtherArray, AuxiliarArray, Size);
 
 			delete[] OtherArray;
 			return true;
@@ -224,12 +239,12 @@ public:
 	void Append(const T& OtherArray)
 	{
 		int OtherArraySize = sizeof(OtherArray) / sizeof(T);
-		int NewSize = ArraySize + OtherArraySize
+		int NewSize = Size + OtherArraySize;
 		Resize(NewSize);
 
 		int OtherIndex = 0;
 
-		for (int i = ArraySize; i < NewSize; i++)
+		for (int i = Size; i < NewSize; i++)
 		{
 			DynamicArray[i] = OtherArray[OtherIndex];
 			OtherIndex++;
@@ -239,12 +254,12 @@ public:
 	}
 
 	//------------------------------------------------------------------------------------------
-	 
+
 	void Resize(int NewCapacity)
 	{
 		T* NewDynamicArray = new T[NewCapacity];
 
-		for (int i = 0; i < ArraySize; i++)
+		for (int i = 0; i < Size; i++)
 		{
 			NewDynamicArray[i] = DynamicArray[i];
 		}
@@ -252,13 +267,13 @@ public:
 		delete[] DynamicArray;
 		DynamicArray = NewDynamicArray;
 
-		delegate[] NewDynamicArray;
+		delete[] NewDynamicArray;
 
 	}
 
 	void CheckBounds()
 	{
-		if (ArraySize >= ArrayCapacity)
+		if (Size >= Capacity)
 		{
 			Reserve();
 		}

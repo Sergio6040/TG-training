@@ -8,7 +8,9 @@ class FSquare : public FShape
 public:
 	FSquare() = default;
 
-	FSquare(float InSide) : Side{ InSide } {};
+	FSquare(float InSide) : Side{InSide} {};
+
+	FSquare(FSquare &Object) : Side{Object.Side} {};
 
 	float GetArea() const override;
 

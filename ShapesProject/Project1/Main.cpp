@@ -30,9 +30,9 @@ FSquare* GetSquare()
 //------------------------------------------------------------------------------------------
 
 template<typename T>
-void PrintArray(const T& InArray, int ArraySize)
+void PrintArray(const T& InArray, int InSize)
 {
-	for (int i = 0; i < ArraySize; i++)
+	for (int i = 0; i < InSize; i++)
 	{
 		float LoopArea = InArray[i]->GetArea();
 		float LoopPerimeter = InArray[i]->GetPerimeter();
