@@ -14,21 +14,23 @@ public:
 
 	FCategoryHandler();
 
+	FCategoryHandler(const FCategoryHandler &InHandler);
+
+	~FCategoryHandler();
+
 	int GetCategoriesAmount() const;
 
-	bool AddCategory(const FCategory NewCategory);
+	bool AddCategory(const FCategory& NewCategory);
 
 	bool HasSpace() const;
 
-	void DeleteCategory(const int Index);
+	void DeleteCategory(const int& Index);
 
 	void ShowCategories();
 
-	bool AddGameToCategory(const int Index, const FGame NewGame);
+	bool AddGameToCategory(const int& Index, const FGame& NewGame);
 
-	FCategory GetCategory(const int Index);
-
-	FCategory GetCategory(const std::string NewCategoryName);
+	const FCategory& GetCategory(const int& Index);
 
 	void ShowAllCategories() const;
 
