@@ -1,67 +1,63 @@
 #pragma once
-
 #include<cstring>
 
 template <typename T, int N> 
 class TStaticArray
 {
-	T* SpecialArray = new T[N];
+private:
+	T* StaticArray = new T[N];
 
 public:
 
 	~TStaticArray()
 	{
-		for (int i = 0; i < N; i++)
-		{
-			delete SpecialArray[i];
-		}
-		delete[] SpecialArray;
+		delete[] StaticArray;
 	}
 
 	const T& operator[] (const int Index) const
 	{
-		return SpecialArray[Index];
+		return StaticArray[Index];
 	}
 
 	T& operator[] (const int Index)
 	{
-		return SpecialArray[Index];
+		return StaticArray[Index];
 	}
 
 //------------------------------------------------------------------------------------------
 
 	const T& Front() const
 	{
-		return SpecialArray[0];
+		return StaticArray[0];
 	}
 
 	T& Front()
 	{
-		return SpecialArray[0];
+		return StaticArray[0];
 	}
 
 //------------------------------------------------------------------------------------------
 
 	const T& Back() const
 	{
-		return SpecialArray[N];
+		return StaticArray[N - 1];
 	}
 
 	T& Back()
 	{
-		return SpecialArray[N];
+		return StaticArray[N - 1];
 	}
 
 //------------------------------------------------------------------------------------------
 
 	const T* GetData() const
 	{
-		return SpecialArray;
+		return StaticArray;
 	}
 
 	T* GetData()
 	{
-		return SpecialArray;
+		return StaticArray;
 	}
 
 //------------------------------------------------------------------------------------------
@@ -80,31 +76,28 @@ public:
 
 //------------------------------------------------------------------------------------------
 
-	void Fill(T Value)
+	void Fill(const T& Value)
 	{
 		for (int i = 0; i < N; i++)
 		{
-			SpecialArray[i] = Value;
+			StaticArray[i] = Value;
 		}
 	}
 
 //------------------------------------------------------------------------------------------
 
-	bool Swap(TStaticArray& OtherArray)
+	void Swap(TStaticArray<T, N>& OtherArray)
 	{
-		int OtherSize = sizeof(OtherArray) / sizeof(OtherArray[0]);
+		T* AuxiliarArray = new T[N];
 
-		if (OtherSize == N)
+		for (int i = 0; i < N; i++)
 		{
-			T* AuxiliarArray = new T[N];
-			memcpy(AuxiliarArray, SpecialArray, N);
-			memcpy(SpecialArray, OtherArray, N);
-			memcpy(OtherArray, AuxiliarArray, N);
-
-			delete[] OtherArray;
-			return true;
+			AuxiliarArray[i] = StaticArray[i];
+			StaticArray[i] = OtherArray[i];
+			OtherArray[i] = AuxiliarArray[i];
 		}
-		return false;
+
+		delete[] AuxiliarArray;
 	}
 
 };

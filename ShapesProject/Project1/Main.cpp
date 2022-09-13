@@ -1,9 +1,9 @@
 #include <iostream>
-#include "FShape.h"
-#include "FCircle.h"
-#include "FSquare.h"
-#include "TStaticArray.h"
-#include "TDynamicArray.h"
+#include "Shape.h"
+#include "Circle.h"
+#include "Square.h"
+#include "StaticArray.h"
+#include "DynamicArray.h"
 
 #include "ValidateInput.h"
 

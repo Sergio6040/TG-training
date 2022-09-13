@@ -3,6 +3,7 @@
 template<typename T>
 class TDynamicArray
 {
+private:
 	T* DynamicArray;
 	int Size;
 	int Capacity;
@@ -18,7 +19,7 @@ public:
 
 	//------------------------------------------------------------------------------------------
 
-	TDynamicArray(int InCapacity)
+	TDynamicArray(const int InCapacity)
 	{
 		DynamicArray = new T[InCapacity];
 		Size = 0;
@@ -27,19 +28,15 @@ public:
 
 	//------------------------------------------------------------------------------------------
 
-	TDynamicArray(const TDynamicArray& Object) : Size{Object.Size}, Capacity{Object.Capacity}
+	TDynamicArray(const TDynamicArray<T>& CopyArray) : Size(CopyArray.Size), Capacity(CopyArray.Capacity)
 	{
-		Append(Object);
+		Append(CopyArray);
 	}
 
 	//------------------------------------------------------------------------------------------
 
 	~TDynamicArray()
 	{
-		for (int i = 0; i < Size; i++)
-		{
-			delete DynamicArray[i];
-		}
 		delete[] DynamicArray;
 	}
 
@@ -83,12 +80,12 @@ public:
 
 	const T& Back() const
 	{
-		return DynamicArray[Size];
+		return DynamicArray[Size - 1];
 	}
 
 	T& Back()
 	{
-		return DynamicArray[Size];
+		return DynamicArray[Size - 1];
 	}
 
 	//------------------------------------------------------------------------------------------
@@ -194,8 +191,6 @@ public:
 
 	void Erase(const int Position)
 	{
-		CheckBounds();
-
 		for (int i = Position; i < Size - 1; i++)
 		{
 			DynamicArray[i] = DynamicArray[i + 1];
@@ -217,30 +212,21 @@ public:
 
 	//------------------------------------------------------------------------------------------
 
-	bool Swap(TDynamicArray& OtherArray)
+	void Swap(TDynamicArray<T, N>& OtherArray)
 	{
-		int OtherSize = sizeof(OtherArray) / sizeof(OtherArray[0]);
+		T* AuxiliarArray = new T[Size];
+		memcpy(AuxiliarArray, DynamicArray, Size);
+		memcpy(DynamicArray, OtherArray, Size);
+		memcpy(OtherArray, AuxiliarArray, Size);
 
-		if (OtherSize == Size)
-		{
-			T* AuxiliarArray = new T[Size];
-			memcpy(AuxiliarArray, DynamicArray, Size);
-			memcpy(DynamicArray, OtherArray, Size);
-			memcpy(OtherArray, AuxiliarArray, Size);
-
-			delete[] OtherArray;
-			return true;
-		}
-		return false;
+		delete[] OtherArray;
 	}
 
 	//------------------------------------------------------------------------------------------
 
-	void Append(const TDynamicArray& OtherArray)
+	void Append(const TDynamicArray<T>& OtherArray)
 	{
-		int OtherArraySize = sizeof(OtherArray) / sizeof(T);
-		int NewSize = Size + OtherArraySize;
-		Resize(NewSize);
+		Resize(Size + OtherArray.GetSize());
 
 		int OtherIndex = 0;
 
