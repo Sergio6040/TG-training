@@ -11,8 +11,8 @@ private:
 		FNode* Next = nullptr;
 	};
 
-	FNode* Head;
-	FNode* Tail;
+	FNode* Head = new FNode();
+	FNode* Tail = new FNode();
 
 	int ListSize;
 
@@ -93,7 +93,7 @@ public:
 
 	void AddHead(const Type& InElement)
 	{
-		FNode* NewHead;
+		FNode* NewHead = new FNode();
 		NewHead->Element = InElement;
 		NewHead->Next = Head;
 
@@ -106,7 +106,7 @@ public:
 
 	void AddTail(const Type& InElement)
 	{
-		FNode* NewTail;
+		FNode* NewTail = new FNode();
 		NewTail->Element = InElement;
 
 		Tail->Next = NewTail;
@@ -122,11 +122,10 @@ public:
 		if (Index == 0)
 		{
 			AddHead(InElement);
-			ListSize++;
 		}
 		else if (Index > 0 && Index < ListSize)
 		{
-			FNode* NewNode;
+			FNode* NewNode = new FNode();
 			NewNode->Element = InElement;
 
 			GetNode(Index - 1)->Next = NewNode;
@@ -141,8 +140,8 @@ public:
 	{
 		if (Index >= 0 && Index < ListSize)
 		{
-			GetNode(Index)->Next = nullptr;
 			GetNode(Index - 1)->Next = GetNode(Index + 1);
+			delete GetNode(Index);
 			ListSize--;
 		}
 	}
@@ -151,6 +150,14 @@ public:
 
 	void Clear()
 	{
-		
+		FNode* NextUp;
+
+		for (int i = 0; i < ListSize; i++)
+		{
+			NextUp = Head->Next;
+			delete Head;
+			Head = NextUp;
+		}
+		ListSize = 0;
 	}
 };
