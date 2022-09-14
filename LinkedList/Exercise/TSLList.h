@@ -11,8 +11,8 @@ private:
 		FNode* Next = nullptr;
 	};
 
-	FNode* Head = new FNode();
-	FNode* Tail = new FNode();
+	FNode* Head;
+	FNode* Tail;
 
 	int ListSize;
 
@@ -30,6 +30,17 @@ public:
 
 	TSLList() : Head(nullptr), Tail(nullptr), ListSize(0) {};
 
+	TSLList(TSLList& InList)
+	{
+		FNode* Current = InList.Head;
+		AddHead(Current->Element);
+		for (int i = 1; i < InList.ListSize; i++)
+		{
+			AddTail(Current->Element);
+			Current = Current->Next;
+		}
+	}
+
 	//-------------------------------------------------------------------------------------
 
 	Type& operator[] (const int Index)
@@ -41,12 +52,7 @@ public:
 
 	const Type& operator[] (const int Index) const
 	{
-		FNode* Current = Head;
-		for (int i = 0; i < Index; i++)
-		{
-			Current = Current->Next;
-		}
-		return Current->Element;
+		return GetNode(Index)->Element;
 	}
 
 	//-------------------------------------------------------------------------------------
