@@ -28,7 +28,69 @@ private:
 
 public:
 
+	class FIterator
+	{
+	private:
+		FNode* Current;
+
+	public:
+
+		FIterator()
+		{
+			Current = Head;
+		}
+
+		FIterator(Type* NewCurrent)
+		{
+			Current = NewCurrent;
+		}
+
+		FIterator& operator++ ()
+		{
+			Current = Current->Next;
+			return *this;
+		}
+
+		FNode* operator* ()
+		{
+			return *Current;
+		}
+
+		bool operator!= (const FIterator& Other)
+		{
+			return Current != Other.Current;
+		}
+
+	};
+
+	FIterator Begin()
+	{
+		if (Head)
+		{
+			return Head;
+		}
+		return nullptr;
+	}
+
+	FIterator End()
+	{
+		return Tail->Next;
+	}
+
+
+	//Constructor
+	//-------------------------------------------------------------------------------------
+
 	TSLList() : Head(nullptr), Tail(nullptr), ListSize(0) {};
+
+	//-------------------------------------------------------------------------------------
+
+	~TSLList()
+	{
+		Clear();
+	};
+
+	//-------------------------------------------------------------------------------------
 
 	TSLList(TSLList& InList)
 	{
@@ -106,7 +168,7 @@ public:
 
 		if (ListSize == 0)
 		{
-			Tail = Head
+			Tail = Head;
 		}
 
 		ListSize++;
@@ -198,7 +260,7 @@ public:
 		FNode* Current = Head;
 		while (Current)
 		{
-			if (Predicate(Current->Element)
+			if (Predicate(Current->Element))
 			{
 				return &Current->Element;
 			}
@@ -220,7 +282,7 @@ public:
 		FNode* Current = Head;
 		for (int i = 0; i < ListSize; i++)
 		{
-			if (Predicate(Current->Element)
+			if (Predicate(Current->Element))
 			{
 				NewList.AddTail(Current->Element);
 			}
@@ -237,7 +299,7 @@ public:
 		FNode* Current = Head;
 		for (int i = 0; i < ListSize; i++)
 		{
-			if (Predicate(Current->Element)
+			if (Predicate(Current->Element))
 			{
 				Remove(i);
 			}
