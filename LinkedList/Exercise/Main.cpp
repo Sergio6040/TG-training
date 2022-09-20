@@ -10,9 +10,9 @@ template<typename T>
 void PrintList(TSLList<T>& List)
 {
 	std::cout << "Size: " << List.GetSize() << "\t\tList Contents: { ";
-	for (const T& Element : List)
+	for (const T& Data : List)
 	{
-		std::cout << Element << ' ';
+		std::cout << Data << ' ';
 	}
 	std::cout << "}\n";
 }
