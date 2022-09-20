@@ -35,11 +35,6 @@ public:
 
 	public:
 
-		/*FIterator()
-		{
-			Current = Head;
-		}*/
-
 		FIterator(FNode* NewCurrent)
 		{
 			Current = NewCurrent;
