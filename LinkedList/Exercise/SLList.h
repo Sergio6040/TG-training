@@ -35,12 +35,12 @@ public:
 
 	public:
 
-		FIterator()
+		/*FIterator()
 		{
 			Current = Head;
-		}
+		}*/
 
-		FIterator(Type* NewCurrent)
+		FIterator(FNode* NewCurrent)
 		{
 			Current = NewCurrent;
 		}
@@ -51,9 +51,9 @@ public:
 			return *this;
 		}
 
-		FNode* operator* ()
+		Type& operator* ()
 		{
-			return *Current;
+			return Current->Element;
 		}
 
 		bool operator!= (const FIterator& Other)
@@ -61,20 +61,21 @@ public:
 			return Current != Other.Current;
 		}
 
+
 	};
 
-	FIterator Begin()
+	FIterator begin()
 	{
 		if (Head)
 		{
-			return Head;
+			return FIterator(Head);
 		}
-		return nullptr;
+		return FIterator(nullptr);
 	}
 
-	FIterator End()
+	FIterator end()
 	{
-		return Tail->Next;
+		return FIterator(nullptr);
 	}
 
 
@@ -111,7 +112,20 @@ public:
 
 	//-------------------------------------------------------------------------------------
 
-	const Type& operator[] (const int Index) const
+	void operator= (TSLList& InList)
+	{
+		Clear();
+		FNode* Current = InList.Head;
+		for (int i = 0; i < InList.ListSize; i++)
+		{
+			AddTail(Current->Element);
+			Current = Current->Next;
+		}
+	}
+
+	//-------------------------------------------------------------------------------------
+
+	const Type& operator= (const int Index) const
 	{
 		return GetNode(Index)->Element;
 	}
@@ -205,11 +219,13 @@ public:
 		}
 		else if (Index > 0 && Index < ListSize)
 		{
+			FNode* Current = GetNode(Index);
+
 			FNode* NewNode = new FNode();
 			NewNode->Element = InElement;
 
 			GetNode(Index - 1)->Next = NewNode;
-			NewNode->Next = GetNode(Index);
+			NewNode->Next = Current;
 			ListSize++;
 		}
 	}
@@ -218,10 +234,18 @@ public:
 
 	void Remove(const int Index)
 	{
-		if (Index >= 0 && Index < ListSize)
+		if (Index == 0)
 		{
-			GetNode(Index - 1)->Next = GetNode(Index + 1);
-			delete GetNode(Index);
+			FNode* NextUp = Head->Next;
+			delete Head;
+			Head = NextUp;
+		}
+		else if (Index > 0 && Index < ListSize)
+		{
+			FNode* Previous = GetNode(Index - 1);
+			FNode* Pending = Previous->Next;
+			Previous->Next = Pending->Next;
+			delete Pending;
 			ListSize--;
 		}
 	}
