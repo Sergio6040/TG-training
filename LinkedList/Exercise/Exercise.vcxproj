@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="DLList.h" />
     <ClInclude Include="SLList.h" />
   </ItemGroup>
   <ItemGroup>
