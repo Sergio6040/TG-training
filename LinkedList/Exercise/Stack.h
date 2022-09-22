@@ -4,6 +4,7 @@
 template<typename Type>
 class TStack
 {
+private:
 	TSLList<Type> List;
 
 public:
@@ -18,8 +19,18 @@ public:
 		List.Remove(0);
 	}
 
-	Type& Peek() 
+	Type& Peek() const
 	{
 		return List.GetHead();
+	}
+
+	bool IsEmpty() const
+	{
+		return List.IsEmpty();
+	}
+
+	int GetSize() const
+	{
+		List.GetSize();
 	}
 };

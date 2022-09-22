@@ -71,6 +71,8 @@ public:
 		return FIterator(Head);
 	}
 
+	//-------------------------------------------------------------------------------------
+
 	FIterator end()
 	{
 		return FIterator(nullptr);

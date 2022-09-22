@@ -7,6 +7,9 @@
 #include "SLList.h"
 #include "DLList.h"
 
+#include "Stack.h"
+#include "Queue.h"
+
 template<typename T>
 void PrintList(TDLList<T>& List)
 {
