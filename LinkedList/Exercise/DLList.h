@@ -1,6 +1,5 @@
 #pragma once
 
-
 template<typename Type>
 class TDLList
 {
@@ -13,7 +12,7 @@ private:
 		FNode* Previous = nullptr;
 
 		FNode() = default;
-		FNode(const Type& NewData, FNode* NewNext, FNode* NewPrevious) : Data(NewData), Next(NewNext), Previous(NewPrevious) {};
+		FNode(const Type& NewData, FNode* NewPrevious, FNode* NewNext) : Data(NewData), Next(NewNext), Previous(NewPrevious) {};
 	};
 
 	FNode* Head;
@@ -23,7 +22,7 @@ private:
 
 	FNode* GetNode(const int Index)
 	{
-		FNode* Curent;
+		FNode* Current;
 
 		if (Index < (Size / 2))
 		{
@@ -93,18 +92,18 @@ public:
 
 	//-------------------------------------------------------------------------------------
 
-	TSLList() : Head(nullptr), Tail(nullptr), Size(0) {};
+	TDLList() : Head(nullptr), Tail(nullptr), Size(0) {};
 
 	//-------------------------------------------------------------------------------------
 
-	~TSLList()
+	~TDLList()
 	{
 		Clear();
 	};
 
 	//-------------------------------------------------------------------------------------
 
-	TSLList(const TSLList& InList)
+	TDLList(const TDLList& InList)
 	{
 		FNode* Current = InList.Head;
 		for (int i = 0; i < InList.Size; i++)
@@ -130,7 +129,7 @@ public:
 
 	//-------------------------------------------------------------------------------------
 
-	void operator=(const TSLList& InList)
+	void operator=(const TDLList& InList)
 	{
 		Clear();
 		FNode* Current = InList.Head;
@@ -187,7 +186,7 @@ public:
 
 	void AddHead(const Type& InData)
 	{
-		FNode* NewHead = new FNode(InData, Head, nullptr);
+		FNode* NewHead = new FNode(InData, nullptr, Head);
 
 		Head = NewHead;
 
@@ -208,7 +207,7 @@ public:
 		}
 		else
 		{
-			FNode* NewTail = new FNode(InData, nullptr, Tail);
+			FNode* NewTail = new FNode(InData, Tail, nullptr);
 
 			Tail->Next = NewTail;
 			Tail = NewTail;
@@ -228,7 +227,7 @@ public:
 		{
 			FNode* Current = GetNode(Index);
 
-			FNode* NewNode = new FNode(InData, Current, Current->Previous);
+			FNode* NewNode = new FNode(InData, Current->Previous, Current);
 
 			Current->Previous->Next = NewNode;
 			Current->Previous = NewNode;
@@ -248,17 +247,23 @@ public:
 			FNode* NextUp = Head->Next;
 			delete Head;
 			Head = NextUp;
+			Head->Previous = nullptr;
 			Size--;
 		}
 		else if (Index > 0 && Index < Size)
 		{
 			FNode* Previous = GetNode(Index - 1);
-
 			FNode* ToRemove = Previous->Next;
+
 			Previous->Next = ToRemove->Next;
+			ToRemove->Next->Previous = Previous;
 
 			delete ToRemove;
 			Size--;
+
+			/*ToRemove = GetNode(Index);
+			ToRemove->Previous->Next = ToRemove->Next;
+			ToRemove->Next->Previous = ToRemove->Previous;*/
 		}
 	}
 
